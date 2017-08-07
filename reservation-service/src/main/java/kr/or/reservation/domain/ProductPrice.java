@@ -5,17 +5,15 @@ import java.sql.Timestamp;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class ReservationUserComment {
+public class ProductPrice {
+
 	private long id;
 	private long productId;
-	private long userId;
-	private String score;
-	private String comment;
+	private int priceType;
+	private long price;
+	private String discountRate;
 	private Timestamp createDate;
 	private Timestamp modifyDate;
-
-	private User user;
-	private Product product;
 
 	public long getId() {
 		return id;
@@ -33,28 +31,28 @@ public class ReservationUserComment {
 		this.productId = productId;
 	}
 
-	public long getUserId() {
-		return userId;
+	public int getPriceType() {
+		return priceType;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setPriceType(int priceType) {
+		this.priceType = priceType;
 	}
 
-	public String getScore() {
-		return score;
+	public long getPrice() {
+		return price;
 	}
 
-	public void setScore(String score) {
-		this.score = score;
+	public void setPrice(long price) {
+		this.price = price;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getDiscountRate() {
+		return discountRate;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setDiscountRate(String discountRate) {
+		this.discountRate = discountRate;
 	}
 
 	public Timestamp getCreateDate() {
@@ -71,22 +69,6 @@ public class ReservationUserComment {
 
 	public void setModifyDate(Timestamp modifyDate) {
 		this.modifyDate = modifyDate;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
 	}
 
 	@Override

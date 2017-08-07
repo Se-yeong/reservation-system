@@ -5,17 +5,12 @@ import java.sql.Timestamp;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class ReservationUserComment {
+public class ProductDetail {
 	private long id;
 	private long productId;
-	private long userId;
-	private String score;
-	private String comment;
+	private String content;
 	private Timestamp createDate;
 	private Timestamp modifyDate;
-
-	private User user;
-	private Product product;
 
 	public long getId() {
 		return id;
@@ -33,28 +28,12 @@ public class ReservationUserComment {
 		this.productId = productId;
 	}
 
-	public long getUserId() {
-		return userId;
+	public String getContent() {
+		return content;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
-
-	public String getScore() {
-		return score;
-	}
-
-	public void setScore(String score) {
-		this.score = score;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public Timestamp getCreateDate() {
@@ -73,24 +52,9 @@ public class ReservationUserComment {
 		this.modifyDate = modifyDate;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE).toString();
 	}
+
 }
