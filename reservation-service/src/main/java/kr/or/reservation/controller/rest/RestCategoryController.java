@@ -16,27 +16,27 @@ import kr.or.reservation.service.CategoryService;
 
 @RestController
 @RequestMapping("/api/category")
-public class CategoryController {
+public class RestCategoryController {
 
-	CategoryService categoryService;
+	CategoryService service;
 
 	@Autowired
-	public CategoryController(CategoryService categoryService) {
-		this.categoryService = categoryService;
+	public RestCategoryController(CategoryService categoryService) {
+		this.service = categoryService;
 	}
 
 	@GetMapping()
 	public List<Category> selectList() {
-		return null;
+		return service.selectList();
 	}
 
 	@PostMapping()
 	public Long insert(@ModelAttribute Category category) {
-		return null;
+		return service.insert(category);
 	}
 
 	@DeleteMapping("/{id}")
 	public Long delete(@PathVariable Long id) {
-		return null;
+		return service.delete(id);
 	}
 }

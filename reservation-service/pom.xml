@@ -10,7 +10,7 @@
 		<resource-encoding>UTF-8</resource-encoding>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<jdk-version>1.8</jdk-version>
-
+		<deploy-path>deploy</deploy-path>
 		<spring-framework.version>4.3.5.RELEASE</spring-framework.version>
 		<jackson2.version>2.8.8</jackson2.version>
 	</properties>
