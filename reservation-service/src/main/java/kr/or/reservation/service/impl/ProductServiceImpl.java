@@ -65,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Long selectCount(long categoryId) {
-		if (categoryId < 0) {
+		if (categoryId <= 0) {
 			return null;
 		}
 		
