@@ -2,12 +2,8 @@ define(["jquery", "component"], function($, Component) {
 	function Scroll(){
 		
 	}
-	
-	(function(){
-		console.log(Component);
-	})();
 
-	Scroll.prototype = new Component;
+	Scroll.prototype = new Component();
 	Scroll.prototype.constructor = Scroll;
 
 	Scroll.prototype.scrollEnd = function(){

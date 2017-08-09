@@ -1,13 +1,3 @@
-
-
-/*
- * 1. slide 모듈은 내일.. 
- * 2. dataload 모듈 
- * 3. count 모듈 /  product 모듈 / scroll 모듈 
- * 4. main 
- * 
- */
-
 requirejs.config({
 	baseUrl: '/resources',
     paths: {
@@ -16,15 +6,18 @@ requirejs.config({
         handlebars: 'node_modules/handlebars/dist/handlebars.min',
         count: "js/module/count",
         product: "js/module/product",
-        scroll: "js/module/scroll"
+        scroll: "js/module/scroll",
+        slider: "js/module/slider"
     }
 });
 
 define(["jquery", "count", "product", "scroll"], function($, CountModule, ProductModule, Scroll) {
 	var categoryId =0;
 	var scroll = new Scroll();
+	var slider;
 	scroll.on("scrollEnd",function(){
-		ProductModule.getProduct(categoryId, 8, "append");
+		var amount = 8;
+		ProductModule.getProduct(categoryId, amount, "append");
 	});
 
 	// 이부분이 init 
@@ -51,6 +44,11 @@ define(["jquery", "count", "product", "scroll"], function($, CountModule, Produc
 		CountModule.getCount(categoryId);
 		ProductModule.getProduct(categoryId, amount, "html");
 	}
+	
+	require("slider", function(Slider){
+		slider = new Slider();
+		
+	});
 
 });
 

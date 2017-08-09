@@ -1,5 +1,5 @@
 define(["jquery","handlebars"], function($, Handlebars) {
-	var start =0;
+	var start = 0;
 	var source = $("#product-template").html();
 	var template = Handlebars.compile(source);
 	
