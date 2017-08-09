@@ -39,4 +39,5 @@ public class RestCategoryController {
 	public Long delete(@PathVariable Long id) {
 		return service.delete(id);
 	}
+	
 }
