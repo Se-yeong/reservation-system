@@ -44,6 +44,6 @@ public class ReservationUserCommentImage {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE).toString();
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
 	}
 }
