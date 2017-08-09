@@ -36,8 +36,8 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List<Product> selectOne(long id) {
-		Map<String, Long> parames = Collections.singletonMap("id", id);
-		return jdbc.query(ProductSqls.SELECT_ONE, parames, rowMapper);
+		Map<String, Long> params = Collections.singletonMap("id", id);
+		return jdbc.query(ProductSqls.SELECT_ONE, params, rowMapper);
 	}
 
 	@Override
@@ -56,6 +56,19 @@ public class ProductDaoImpl implements ProductDao {
 		params.put("amount", amount);
 
 		return jdbc.query(ProductSqls.SELECT_LIST, params, rowMapper);
+	}
+	
+	
+	@Override
+	public Long selectCount() {
+		Map<String, ?> params = Collections.emptyMap();
+		return jdbc.queryForObject(ProductSqls.SELECT_COUNT, params, long.class);
+	}
+
+	@Override
+	public Long selectCount(long categoryId) {
+		Map<String, Long> params = Collections.singletonMap("categoryId", categoryId);
+		return jdbc.queryForObject(ProductSqls.SELECT_COUNT_BY_CATEGORY_ID, params, long.class);
 	}
 
 	private class ProductMapper implements RowMapper<Product> {
@@ -141,5 +154,7 @@ public class ProductDaoImpl implements ProductDao {
 			return display;
 		}
 	}
+
+
 
 }

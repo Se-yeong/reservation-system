@@ -10,5 +10,9 @@ public interface ProductDao {
 	public List<Product> selectList(long categoryId, int start, int amount);
 	
 	public List<Product> selectList(int start, int amount);
+	
+	public Long selectCount();
+	
+	public Long selectCount(long categoryId);
 
 }

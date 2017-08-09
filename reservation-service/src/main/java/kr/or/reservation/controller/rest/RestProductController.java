@@ -29,7 +29,7 @@ public class RestProductController {
 		this.service = service;
 	}
 
-	@GetMapping("")
+	@GetMapping
 	public List<Product> selectList(@RequestParam(required = false) int start,
 			@RequestParam(required = false) int amount) {
 		start = convertNulltoZero(start);
@@ -38,21 +38,22 @@ public class RestProductController {
 	}
 
 	@GetMapping("/category/{categoryId}")
-	public List<Product> selectListByCategoryId(@PathVariable() int categoryId,
+	public List<Product> selectListByCategoryId(@PathVariable int categoryId,
 			@RequestParam(required = false) Integer start, @RequestParam(required = false) Integer amount) {
 		start = convertNulltoZero(start);
 		amount = convertNulltoZero(amount);
 		return service.selectList(categoryId, start, amount);
 	}
 
-	@PostMapping()
-	public Long insert(@ModelAttribute Category category) {
-		return null;
+	@GetMapping("/count")
+	public Long selectCount() {
+		log.info("selectCount");
+		return service.selectCount();
 	}
 
-	@DeleteMapping("/{id}")
-	public Long delete(@PathVariable Long id) {
-		return null;
+	@GetMapping("/count/{categoryId}")
+	public Long selectCount(@PathVariable long categoryId) {
+		return service.selectCount(categoryId);
 	}
 
 	private int convertNulltoZero(Integer num) {

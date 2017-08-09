@@ -18,9 +18,9 @@ public class ProductSqls {
 			+ "LEFT OUTER JOIN display_info ON product.id = display_info.product_id " 
 			+ "WHERE product.id= :id; ";
 	
-	 /*"SELECT * " 
-		+ "FROM product t1 "
-		+ "LEFT OUTER JOIN product_detail t4 ON t1.id = t4.product_id "
-		+ "LEFT OUTER JOIN display_info t5 ON t1.id = t5.product_id " 
-		+ "WHERE t1.id= :id; ";*/
+	public static final String SELECT_COUNT =  "SELECT count(*) FROM product";
+
+
+	public static final String SELECT_COUNT_BY_CATEGORY_ID = "SELECT count(*) FROM product WHERE category_id = :categoryId";
+
 }

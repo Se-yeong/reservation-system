@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.or.reservation.config.RootApplicationContextConfig;
 import kr.or.reservation.domain.Product;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = RootApplicationContextConfig.class)
 @Transactional
@@ -26,20 +25,20 @@ public class ProductTest {
 
 	@Test
 	public void shouldSelectList() {
-		int start = 0, amount =10;
+		int start = 0, amount = 10;
 		List<Product> products = service.selectList(start, amount);
 		log.info("shouldSelectList: " + products.toString());
 		Assert.assertNotNull(products);
 	}
-	
+
 	@Test
 	public void shouldSelectListByCategoryId() {
-		int start = 0, amount =10;
-		List<Product> products = service.selectList(1,start, amount);
+		int start = 0, amount = 10;
+		List<Product> products = service.selectList(1, start, amount);
 		log.info("shouldSelectListByCategoryId: " + products.toString());
 		Assert.assertNotNull(products);
 	}
-	
+
 	@Test
 	public void shouldSelectOne() {
 		List<Product> products = service.selectOne(1);
@@ -47,5 +46,18 @@ public class ProductTest {
 		Assert.assertNotNull(products);
 	}
 
+	@Test
+	public void shouldSelectCount() {
+		Long count = service.selectCount();
+		log.info("shouldSelectCount: " + count.toString());
+		Assert.assertNotNull(count);
+	}
+
+	@Test
+	public void shouldSelectCountByCategoryId() {
+		Long count = service.selectCount(1);
+		log.info("shouldSelectCountByCategoryId: " + count.toString());
+		Assert.assertNotNull(count);
+	}
 
 }
