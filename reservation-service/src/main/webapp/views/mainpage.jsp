@@ -130,10 +130,8 @@
 	{{/item}}
 	</script>
     
-    <script type="text/javascript" src="/resources/node_modules/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="/resources/node_modules/@egjs/component/dist/component.min.js"></script>
-	<script type="text/javascript" src="/resources/node_modules/handlebars/dist/handlebars.min.js"></script>
-	<script type="text/javascript" src="/resources/js/mainpage.js"></script>
+    <script data-main="/resources/js/mainpage" src="/resources/node_modules/requirejs/require.js"></script>
+
 </body>
 
 </html>
