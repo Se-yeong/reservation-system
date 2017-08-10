@@ -47,7 +47,7 @@ define(["jquery", "count", "product", "scroll"], function($, CountModule, Produc
 	}
 	
 	require(["slider"], function(Slider){
-		slider = new Slider($(".section_visual"), 3, 338,true);
+		slider = new Slider($(".section_visual"), 2, 338,false);
 	});
 
 });
