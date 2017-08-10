@@ -8,8 +8,11 @@ requirejs.config({
         jquery: 'node_modules/jquery/dist/jquery.min',
         component: 'node_modules/@egjs/component/dist/component.min',
         ticket : "js/module/ticket",
+        ticket2 : "js/module/ticket.function",
         preservator : "js/module/preservator",
-        extend : "js/lib/extend"
+        extend : "js/lib/extend",
+        extend2 : "js/lib/extend.function"
+        
     }
 });
 
