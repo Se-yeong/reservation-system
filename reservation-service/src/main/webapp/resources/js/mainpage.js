@@ -29,10 +29,9 @@ define(["jquery", "count", "product", "scroll"], function($, CountModule, Produc
 	scollEvnetHandler();
 
 	function categoryClick() {
-		var $this = $(this);
-		categoryId = $this.data("category");
+		categoryId = $(this).data("category");
 		$(".anchor.active").removeClass("active");
-		$this.find(".anchor").addClass("active");
+		$(this).find(".anchor").addClass("active");
 		 getData();
 		 
 	}
@@ -57,9 +56,3 @@ define(["jquery", "count", "product", "scroll"], function($, CountModule, Produc
 	});
 
 });
-
-
-
-
-
-
