@@ -16,7 +16,6 @@ define(["jquery", "component"], function($, Component){
 	
 	Slider.prototype.goLeft = function() {
 		if(this.position <= 1){
-			console.log(this.position);
 			if(!this.endFlag){
 				// 순환
 			}

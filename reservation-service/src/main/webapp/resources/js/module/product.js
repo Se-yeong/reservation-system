@@ -22,7 +22,6 @@ define(["jquery","handlebars"], function($, Handlebars) {
 	
 	
 	function showProduct(method, data) {
-		console.log("showProduct");
 		var left = [];
 		var right =[];
 		
