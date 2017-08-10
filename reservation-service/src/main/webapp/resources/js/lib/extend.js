@@ -17,6 +17,7 @@ define(function(){
 		for (var i in def) {
 			extProto[i] = def[i];
 		}
+	
 		extProto.constructor = extendClass;
 		extendClass.prototype = extProto;
 	

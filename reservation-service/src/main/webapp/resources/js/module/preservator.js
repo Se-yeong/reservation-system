@@ -4,11 +4,19 @@
 define(["jquery", "component","extend"],function($,Component,extend){
 
 	var	Preservator	=	extend(Component,{	
-		updateAmount : function(){
-			console.log("이거되냐");
+		init : function($root){
+			this.$root = $root;
+			
+			this.amount = 0;
+			this.$amount =this.$root.find("#amount");
+		},
+		updateAmount : function(data){
+			if(data.state === "plus"){
+				this.$amount.text(++this.amount);
+			}else{
+				this.$amount.text(--this.amount);
+			}
 		}
 	});
-	
-	
 	return Preservator;
 });

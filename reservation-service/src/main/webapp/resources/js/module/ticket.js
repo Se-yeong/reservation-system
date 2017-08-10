@@ -22,18 +22,18 @@ define(["jquery", "component","extend"],function($,Component,extend){
 		plus : function(event){
 			event.preventDefault(); 
 			++this.count;
-			this.updateText();	
+			this.updateText("plus");	
 		},
 		// 개수 체크하는 부분 필요 
 		minus : function(event){
 			event.preventDefault();
 			--this.count;
-			this.updateText();
+			this.updateText("minus");
 		},
-		updateText : function(){
+		updateText : function(state){
 			this.$count.val(this.count);
 			this.updateSum();
-			this.trigger("changeAmount");
+			this.trigger("changeAmount",{state : state});
 		},
 		updateSum : function(){
 			this.priceSum = this.count * this.price;

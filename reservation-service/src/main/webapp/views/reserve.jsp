@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="inline_form last"> <label class="label" for="message">예매내용</label>
                                     <div class="inline_control">
-                                        <p class="inline_txt selected">2017.2.17.(금)~2017.4.18.(화), 총 0매</p>
+                                        <p class="inline_txt selected">2017.2.17.(금)~2017.4.18.(화), 총 <span id ="amount">0</span>매</p>
                                     </div>
                                 </div>
                             </form>
