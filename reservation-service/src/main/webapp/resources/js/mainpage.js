@@ -15,10 +15,6 @@ define(["jquery", "count", "product", "scroll"], function($, CountModule, Produc
 	var categoryId =0;
 	var scroll = new Scroll();
 	var slider;
-	scroll.on("scrollEnd",function(){
-		var amount = 8;
-		ProductModule.getProduct(categoryId, amount, "append");
-	});
 
 	// 이부분이 init 
 	$(".tab_lst_min > .item:last > .anchor").addClass("last");
@@ -30,7 +26,8 @@ define(["jquery", "count", "product", "scroll"], function($, CountModule, Produc
 	}.bind(this));
 	
 	getData();
-	
+	scollEvnetHandler();
+
 	function categoryClick() {
 		var $this = $(this);
 		categoryId = $this.data("category");
@@ -44,6 +41,15 @@ define(["jquery", "count", "product", "scroll"], function($, CountModule, Produc
 		var amount = 4;
 		CountModule.getCount(categoryId);
 		ProductModule.getProduct(categoryId, amount, "html");
+	}
+	
+	function scollEvnetHandler(){
+		scroll.on("scrollEnd",function(){
+			var amount = 8;
+			scroll.off("scrollEnd");
+			ProductModule.getProduct(categoryId, amount, "append").then(scollEvnetHandler);
+		});
+	
 	}
 	
 	require(["slider"], function(Slider){

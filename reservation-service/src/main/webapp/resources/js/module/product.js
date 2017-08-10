@@ -14,7 +14,7 @@ define(["jquery","handlebars"], function($, Handlebars) {
 			url = url + "/category/" + categoryId;
 		}
 		
-		$.ajax({
+		return $.ajax({
 			url : url + "?start=" + start + "&amount=" + amount,
 			dataType : "json"
 		}).then(showProduct.bind(this, method));
