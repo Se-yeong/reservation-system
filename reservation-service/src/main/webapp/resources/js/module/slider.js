@@ -1,12 +1,13 @@
 define(["jquery", "component"], function($, Component){
-	function Slider(root, num, size){
+	function Slider(root, num, size,endFlag){
 		this.root = root;
-		this.position = 0;
+		this.position = 1;
 		this.num = num || 3;
 		this.size = size || 338;
+		this.endFlag = endFlag || true;
 		
-		this.on("goLeft", goLeft);
-		this.on("goRight", goRight);
+		this.root.find(".nxt_inn").on("click", this.goRight.bind(this));
+		this.root.find(".prev_inn").on("click", this.goLeft.bind(this));
 	};
 	
 	Slider.prototype = new Component();
@@ -14,17 +15,32 @@ define(["jquery", "component"], function($, Component){
 
 	
 	Slider.prototype.goLeft = function() {
-		position--;
+		if(this.position <= 1){
+			console.log(this.position);
+			if(!this.endFlag){
+				// 순환
+			}
+		}else{
+			this.position--;
+		}
 		this.move();
 	}
-	Slider.prototype.goLeft = function() {
-		position++;
+	Slider.prototype.goRight = function() {
+		if(this.position >= this.num){
+			if(!this.endFlag){
+				// 순환
+			}
+		}else{
+			this.position++;
+		}
 		this.move();
 	}
 
 	Slider.prototype.move = function() {
-		root.find(".visual_img").animate({
-			"left": ( -this.position * this.size ) + "px"
+		this.root.find(".visual_img").animate({
+			"left": ( -(this.position-1) * this.size ) + "px"
 		}, "slow");
 	}
+	
+	return Slider;
 });
