@@ -13,10 +13,12 @@ public class ProductSqls {
 			+ "LEFT OUTER JOIN display_info t4 ON t1.id = t4.product_id "
 			+ "WHERE category_id = :categoryId AND sales_flag = 0 AND type = 1 LIMIT :start , :amount;";
 
-	public static final String SELECT_ONE = "SELECT * FROM product "
-			+ "LEFT OUTER JOIN product_detail ON product.id = product_detail.product_id "
-			+ "LEFT OUTER JOIN display_info ON product.id = display_info.product_id " 
-			+ "WHERE product.id= :id; ";
+	public static final String SELECT_ONE = " SELECT * FROM product  " + 
+			" LEFT OUTER JOIN product_detail ON product.id = product_detail.product_id  " + 
+			" LEFT OUTER JOIN display_info ON product.id = display_info.product_id   " + 
+			" INNER JOIN product_image ON  product.id =product_image.product_id " + 
+			" INNER JOIN file ON product_image.file_id = file.id " + 
+			" WHERE product.id= :id;";
 	
 	public static final String SELECT_COUNT =  "SELECT count(*) FROM product";
 

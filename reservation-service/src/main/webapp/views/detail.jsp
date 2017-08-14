@@ -1,15 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 
 <head>
     <meta charset="utf-8">
     <meta name="description" content="네이버 예약, 네이버 예약이 연동된 곳 어디서나 바로 예약하고, 네이버 예약 홈(나의예약)에서 모두 관리할 수 있습니다.">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>네이버 예약</title>
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="/resources/css/style.css" rel="stylesheet">
 </head>
 
 <body>
+${product}
     <div id="container">
         <div class="header fade">
             <header class="header_tit">
@@ -44,7 +48,7 @@
                                     <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span>뮤지컬 로미오와 줄리엣</span> </h2>
+                                                <h2 class="visual_txt_tit"> <span>${product[0].name}</span> </h2>
                                                 <p class="visual_txt_dsc"></p>
                                             </div>
                                         </div>
@@ -52,7 +56,7 @@
                                     <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span>뮤지컬 로미오와 줄리엣</span> </h2>
+                                                <h2 class="visual_txt_tit"> <span>${product[name]}</span> </h2>
                                                 <p class="visual_txt_dsc"></p>
                                             </div>
                                         </div>
@@ -60,7 +64,7 @@
                                     <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span>뮤지컬 로미오와 줄리엣</span> </h2>
+                                                <h2 class="visual_txt_tit"> <span>${product[name]}</span> </h2>
                                                 <p class="visual_txt_dsc"></p>
                                             </div>
                                         </div>

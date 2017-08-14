@@ -1,6 +1,7 @@
 package kr.or.reservation.domain;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -19,7 +20,7 @@ public class Product {
 
 	private ProductDetail productDetail;
 	private DisplayInfo displayInfo;
-	private ProductImage productImage;
+	private List<ProductImage> productImage;
 
 	public long getId() {
 		return id;
@@ -117,11 +118,11 @@ public class Product {
 		this.displayInfo = displayInfo;
 	}
 
-	public ProductImage getProductImage() {
+	public List<ProductImage> getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(ProductImage productImage) {
+	public void setProductImage(List<ProductImage> productImage) {
 		this.productImage = productImage;
 	}
 

@@ -2,6 +2,7 @@ package kr.or.reservation.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ import kr.or.reservation.dao.sqls.ProductSqls;
 import kr.or.reservation.domain.DisplayInfo;
 import kr.or.reservation.domain.Product;
 import kr.or.reservation.domain.ProductDetail;
+import kr.or.reservation.domain.ProductImage;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
@@ -35,9 +37,9 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Product> selectOne(long id) {
+	public Product selectOne(long id) {
 		Map<String, Long> params = Collections.singletonMap("id", id);
-		return jdbc.query(ProductSqls.SELECT_ONE, params, rowMapper);
+		return jdbc.queryForObject(ProductSqls.SELECT_ONE, params, rowMapper);
 	}
 
 	@Override
@@ -57,8 +59,7 @@ public class ProductDaoImpl implements ProductDao {
 
 		return jdbc.query(ProductSqls.SELECT_LIST, params, rowMapper);
 	}
-	
-	
+
 	@Override
 	public Long selectCount() {
 		Map<String, ?> params = Collections.emptyMap();
@@ -72,12 +73,6 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	private class ProductMapper implements RowMapper<Product> {
-		// private RowMapper<Product> rowMapperProduct =
-		// BeanPropertyRowMapper.newInstance(Product.class);
-		// private RowMapper<ProductDetail> rowMapperProductDetail =
-		// BeanPropertyRowMapper.newInstance(ProductDetail.class);
-		// private RowMapper<DisplayInfo> rowMapperDisplayInfo =
-		// BeanPropertyRowMapper.newInstance(DisplayInfo.class);
 
 		@Override
 		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -85,13 +80,6 @@ public class ProductDaoImpl implements ProductDao {
 			Product product = mapProduct(rs);
 			product.setProductDetail(mapProductDetail(rs));
 			product.setDisplayInfo(mapDisplayInfo(rs));
-
-			/*
-			 * Product product = rowMapperProduct.mapRow(rs, rowNum); ProductDetail
-			 * productDetail = rowMapperProductDetail.mapRow(rs, rowNum); DisplayInfo
-			 * displayInfo = rowMapperDisplayInfo.mapRow(rs, rowNum);
-			 * product.setProductDetail(productDetail); product.setDisplayInfo(displayInfo);
-			 */
 
 			return product;
 		}
@@ -117,11 +105,10 @@ public class ProductDaoImpl implements ProductDao {
 
 			try {
 				// detail.setId(rs.getLong("id_1"));
-				detail.setProductId(rs.getLong("id"));
-				detail.setContent(rs.getString("content"));
 				// detail.setCreateDate(rs.getTimestamp("create_date_1"));
 				// detail.setModifyDate(rs.getTimestamp("modify_date_1"));
-
+				detail.setProductId(rs.getLong("id"));
+				detail.setContent(rs.getString("content"));
 			} catch (SQLException e) {
 				log.debug("ProductDetail is not found");
 				return null;
@@ -153,8 +140,35 @@ public class ProductDaoImpl implements ProductDao {
 
 			return display;
 		}
+		
 	}
+	private class ImageMapper extends ProductMapper{
 
+		@Override
+		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Product product = super.mapRow(rs,rowNum);
+			product.setProductImage(productImage);
+			return product;
+		}
+		
+		public List<ProductImage> mapImage(ResultSet rs) throws SQLException {
+			List<ProductImage> list = new ArrayList<ProductImage>();
+			ProductImage image = null;
 
+			try {
+				while(rs.next()) {
+					image = new ProductImage();
+					image.setFile(rs.getString(columnIndex));
+				}
+
+			} catch (SQLException e) {
+				log.debug("image is not found");
+				return null;
+			}
+
+			return null;
+		}
+		
+	}
 
 }

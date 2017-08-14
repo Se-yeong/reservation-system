@@ -41,8 +41,9 @@ public class ProductTest {
 
 	@Test
 	public void shouldSelectOne() {
-		List<Product> products = service.selectOne(1);
+		Product products = service.selectOne(2);
 		log.info("shouldSelectOne: " + products.toString());
+		
 		Assert.assertNotNull(products);
 	}
 

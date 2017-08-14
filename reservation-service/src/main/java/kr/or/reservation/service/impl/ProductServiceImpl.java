@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> selectOne(long id) {
+	public Product selectOne(long id) {
 		if (id <= 0) {
 			return null;
 		}
