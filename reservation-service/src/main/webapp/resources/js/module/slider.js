@@ -1,18 +1,35 @@
 define(["jquery", "component"], function($, Component){
-	function Slider(root, length, size,endFlag){
-		this.root = root;
+	function Slider(setting){
+		this.root = setting.root;
 		this.position = 1;
-		this.length = length || 2;
-		this.size = size || 338;
-		this.endFlag = endFlag;
+		this.length = setting.length || 2;
+		this.size = setting.size || 338;
+		this.endFlag = setting.endFlag;
+		this.autoFlag = setting.autoFlag;
+		this.autoInterval = 0;
+		this.pauseTimeout = 0;
 		
 		this.root.find(".nxt_inn").on("click", this.goRight.bind(this));
 		this.root.find(".prev_inn").on("click", this.goLeft.bind(this));
+		this.root.find(".nxt_inn , .prev_inn").on("click", this.pause.bind(this));
+		this.autoSlide();
 	};
 	
 	Slider.prototype = new Component();
 	Slider.prototype.constructor = Slider;
 
+	Slider.prototype.autoSlide = function(){
+		if(this.autoFlag){
+			this.autoInterval = setInterval(this.goRight.bind(this), 2000);
+		}
+	}
+	
+	Slider.prototype.pause = function(){
+		clearTimeout(this.pauseTimeout);
+		clearInterval(this.autoInterval);
+		this.pauseTimeout = setTimeout(this.autoSlide.bind(this), 4000);
+	}
+	
 	
 	Slider.prototype.goLeft = function() {
 		if(this.position <= 1){

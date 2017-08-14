@@ -52,7 +52,14 @@ define(["jquery", "count", "product", "scroll"], function($, CountModule, Produc
 	}
 	
 	require(["slider"], function(Slider){
-		slider = new Slider($(".section_visual"), 2, 338,false);
+		var setting  = {
+				root  : $(".section_visual"),
+				length : 2,
+				size : 338,
+				endFlag : false,
+				autoFlag : true
+		};
+		slider = new Slider(setting);
 	});
-
+	
 });
