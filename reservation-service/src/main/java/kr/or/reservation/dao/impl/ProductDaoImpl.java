@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.reservation.dao.ProductDao;
 import kr.or.reservation.dao.sqls.ProductSqls;
 import kr.or.reservation.domain.DisplayInfo;
+import kr.or.reservation.domain.File;
 import kr.or.reservation.domain.Product;
 import kr.or.reservation.domain.ProductDetail;
 import kr.or.reservation.domain.ProductImage;
@@ -28,6 +29,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	private NamedParameterJdbcTemplate jdbc;
 	private RowMapper<Product> rowMapper = new ProductMapper();
+	private RowMapper<Product> imageMapper = new ImageMapper();
 
 	Logger log = Logger.getLogger(this.getClass());
 
@@ -39,7 +41,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public Product selectOne(long id) {
 		Map<String, Long> params = Collections.singletonMap("id", id);
-		return jdbc.queryForObject(ProductSqls.SELECT_ONE, params, rowMapper);
+		return jdbc.queryForObject(ProductSqls.SELECT_ONE, params, imageMapper);
 	}
 
 	@Override
@@ -140,25 +142,43 @@ public class ProductDaoImpl implements ProductDao {
 
 			return display;
 		}
-		
+
 	}
-	private class ImageMapper extends ProductMapper{
+
+	private class ImageMapper extends ProductMapper {
 
 		@Override
 		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
-			Product product = super.mapRow(rs,rowNum);
-			product.setProductImage(productImage);
+			Product product = super.mapRow(rs, rowNum);
+			product.setProductImage(mapImage(rs));
 			return product;
 		}
-		
+
 		public List<ProductImage> mapImage(ResultSet rs) throws SQLException {
 			List<ProductImage> list = new ArrayList<ProductImage>();
 			ProductImage image = null;
+			File file = null;
 
 			try {
-				while(rs.next()) {
+				while (rs.next()) {
+					file = new File();
+					file.setContentType(rs.getString("content_type"));
+					//file.setCreateDate(rs.getString(createDate));
+					file.setDeleteFlag(rs.getInt("delete_flag"));
+					file.setFileLength(rs.getInt("file_length"));
+					file.setFileName(rs.getString("file_name"));
+					file.setId(rs.getInt("id"));
+					file.setSaveFileName(rs.getString("save_file_name"));
+					file.setUserId(rs.getInt("user_id"));
+					
 					image = new ProductImage();
-					image.setFile(rs.getString(columnIndex));
+					image.setFile(file);
+					image.setFileId(rs.getInt("file_id"));
+					//image.setId(rs.getInt("id"));
+					//image.setProductId(rs.getInt("product_id"));
+					image.setType(rs.getInt("type"));
+					
+					list.add(image);
 				}
 
 			} catch (SQLException e) {
@@ -166,9 +186,9 @@ public class ProductDaoImpl implements ProductDao {
 				return null;
 			}
 
-			return null;
+			return list;
 		}
-		
+
 	}
 
 }
