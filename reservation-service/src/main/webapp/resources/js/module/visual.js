@@ -5,39 +5,47 @@ define([ "jquery", "handlebars", "component", "extend2" ], function($,Handlebars
 
 	function Visual(setting) {
 		this.$root = setting.$root;
-		this.url = setting.url || false;
 		this.source = setting.handlebarsElement;
-		this.template = Handlebars.compile(source);
-		//console.log(getEl());
+		this.template;
+		this.init();
+		
 	}
 	
 	Visual.prototype.constructor = Visual;
 	
-	Visual.prototype.getImages = function() {
-		
+	Visual.prototype.init = function() {
+		this.template = Handlebars.compile(this.source);
 		
 	}
+
 	
-	Visual.prototype.getAjax = function(){
+	Visual.prototype.getImagesByEl = function(product) {
+		this.makeVisual(product.productImage);
+	}
+	
+	Visual.prototype.getImagesByAjax = function(url) {
 		$.ajax({
 			url : this.url,
 			method : "GET",
 			dataType : 'json'
-		}).then(showImages.bind(this));
+		}).then(this.makeVisual.bind(this));
 	}
 
-	Visual.prototype.showImages = function(data) {
+	Visual.prototype.makeVisual = function(data) {
 		
-		console.log(data);
+		var images = [];
+		data.forEach(function(v, i) {
+			images.push(v.file);
+		});
 		
-		$root.find("ul.visual_img").append(template("어떤 데이터"));
+		var result = this.template({images: images});
+		this.$root.find(".visual_img").append(result);
 	}
 	
 	
 	
-	var visual = extend(Component, Visual);
+	var visual = extend(Component, Visual.prototype);
 
-	console.log(visual);
 	
 	return visual;
 });

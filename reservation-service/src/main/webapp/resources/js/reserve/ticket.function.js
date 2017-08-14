@@ -47,7 +47,7 @@ define(["jquery", "component","extend2"],function($,Component,extend){
 		this.$priceSum.text(this.priceSum);
 	}
 	
-	var ticket = extend(Component, Ticket);
+	var ticket = extend(Component, Ticket.prototype);
 
 	
 	return ticket;

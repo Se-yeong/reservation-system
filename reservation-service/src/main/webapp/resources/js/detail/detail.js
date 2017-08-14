@@ -10,18 +10,20 @@ requirejs.config({
     }
 });
 
-define(["jquery"], function($) {
-	var visual;
+define(["jquery","visual"], function($,Visual) {
 	
-	require(["visual"], function(Visual){
-		var setting  = {
-				root  : $(".section_visual"),
-				url : "",
-				handlebarsElement : $("#image-template").html()
-		};
-		visual = new Visual();
-		console.log(Visual);
-		console.log(visual);
-	});
+	var product = getEl();
+	
+	
+	var setting  = {
+			$root  : $(".section_visual"),
+			handlebarsElement : $("#image-template").html()
+	};
+	
+	var visual = new Visual(setting);
+	
+	console.log(visual);
+	visual.getImagesByEl(product);
+
 	
 });

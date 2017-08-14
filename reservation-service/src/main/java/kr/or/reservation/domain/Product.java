@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import kr.or.reservation.common.ToStringStyleCustom;
+
 public class Product {
 	private long id;
 	private String categoryId;
@@ -128,7 +130,8 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+		return ToStringBuilder.reflectionToString(this, new ToStringStyleCustom());
+		//return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
 	}
 
 }

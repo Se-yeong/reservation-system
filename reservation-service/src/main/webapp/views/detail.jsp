@@ -46,7 +46,7 @@
                                 <ul class="visual_img">
                                 	<script type="text/handlebars" id = "image-template">
 									{{#images}}
-                                    <li class="item" style="width: 414px;"> <img alt="{{file.fileName}}" class="img_thumb" src="{{file.saveFileName}}"> 
+                                    <li class="item" style="width: 414px;"> <img alt="{{fileName}}" class="img_thumb" src="{{saveFileName}}"> 
                                     	<span class="img_bg"></span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">
@@ -243,7 +243,7 @@
     
     <script>
     	function getEl() {
-    		return '${product}';
+    		return JSON.parse('${product}');
     	}
     </script>
     <script data-main="/resources/js/detail/detail" src="/resources/node_modules/requirejs/require.js"></script>
