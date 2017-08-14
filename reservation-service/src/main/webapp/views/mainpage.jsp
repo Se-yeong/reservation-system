@@ -139,7 +139,7 @@
 	{{/item}}
 	</script>
     
-    <script data-main="/resources/js/mainpage" src="/resources/node_modules/requirejs/require.js"></script>
+    <script data-main="/resources/js/mainpage/mainpage" src="/resources/node_modules/requirejs/require.js"></script>
 
 </body>
 

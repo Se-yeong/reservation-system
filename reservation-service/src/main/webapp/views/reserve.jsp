@@ -166,6 +166,6 @@
     </footer>
 </body>
 
-<script data-main="/resources/js/reserve" src="/resources/node_modules/requirejs/require.js"></script>
+<script data-main="/resources/js/reserve/reserve" src="/resources/node_modules/requirejs/require.js"></script>
 
 </html>

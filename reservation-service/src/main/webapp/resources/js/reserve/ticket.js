@@ -1,5 +1,6 @@
 define(["jquery", "component","extend"],function($,Component,extend){
 
+	
 	var ticket = extend(Component,{	
 		init : function($root,max){
 			this.$root = $root;

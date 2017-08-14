@@ -13,13 +13,12 @@
 </head>
 
 <body>
-${product}
     <div id="container">
         <div class="header fade">
             <header class="header_tit">
                 <h1 class="logo">
-                    <a href="#" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
-                    <a href="#" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
+                    <a href="/" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
+                    <a href="/" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
                 </h1>
                 <a href="#" class="btn_my"> <span title="내 예약">MY</span> </a>
             </header>
@@ -45,10 +44,23 @@ ${product}
                         <div>
                             <div class="container_visual" style="width: 414px;">
                                 <ul class="visual_img">
+                                	<script type="text/handlebars" id = "product-template">
+									</script>
+									{{#images}}
+                                    <li class="item" style="width: 414px;"> <img alt="{{file.fileName}}" class="img_thumb" src="{{file.saveFileName}}"> 
+                                    	<span class="img_bg"></span>
+                                        <div class="visual_txt">
+                                            <div class="visual_txt_inn">
+                                                <h2 class="visual_txt_tit"> <span>${product.name}</span> </h2>
+                                                <p class="visual_txt_dsc"></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {{/images}}
                                     <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span>${product[0].name}</span> </h2>
+                                                <h2 class="visual_txt_tit"> <span>${product.name}</span> </h2>
                                                 <p class="visual_txt_dsc"></p>
                                             </div>
                                         </div>
@@ -56,15 +68,7 @@ ${product}
                                     <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span>${product[name]}</span> </h2>
-                                                <p class="visual_txt_dsc"></p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
-                                        <div class="visual_txt">
-                                            <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span>${product[name]}</span> </h2>
+                                                <h2 class="visual_txt_tit"> <span>${product.name}</span> </h2>
                                                 <p class="visual_txt_dsc"></p>
                                             </div>
                                         </div>
@@ -89,9 +93,9 @@ ${product}
                         </div>
                     </div>
                     <div class="group_btn_goto">
-                        <a class="btn_goto_home" title="홈페이지" href="#" target="siteUrl"> <i class="fn fn-home1"></i> </a>
-                        <a class="btn_goto_tel" title="전화" href="#"> <i class="fn fn-call1"></i> </a>
-						<a class="btn_goto_mail" title="이메일" href="#"> <i class="fn fn-mail1"></i> </a>
+                        <a class="btn_goto_home" title="홈페이지" href="${product.displayInfo.homepage}" target="siteUrl"> <i class="fn fn-home1"></i> </a>
+                        <a class="btn_goto_tel" title="전화" href="${product.displayInfo.tel}"> <i class="fn fn-call1"></i> </a>
+						<a class="btn_goto_mail" title="이메일" href="${product.displayInfo.email}"> <i class="fn fn-mail1"></i> </a>
                         <a href="#" class="btn_goto_path" title="길찾기"> <i class="fn fn-path-find1"></i> </a>
                         <a href="#" class="fn fn-share1 naver-splugin btn_goto_share" title="공유하기"></a>
                     </div>
@@ -100,7 +104,7 @@ ${product}
                     <!-- [D] 펼쳐보기 클릭 시 store_details에 close3 제거 -->
                     <div class="store_details close3">
                         <p class="dsc">
-                            웰메이드 창작 뮤지컬의 대표 브랜드 '김수로 프로젝트' 최신작! 연극, 뮤지컬, 무용 등 매년 작품성 있는 창작 공연을 선보이며, 대한민국 대표 웰메이드 창작 브랜드로 자리매김한 '김수로 프로젝트'의 최신작 입니다.
+                        	${product.description}
                         </p>
                     </div>
                     <!-- [D] 토글 상황에 따라 bk_more에 display:none 추가 -->
@@ -113,7 +117,7 @@ ${product}
                             <h4 class="in_tit"> <i class="spr_book ico_evt"></i> <span>이벤트 정보</span> </h4>
                         </div>
                         <div class="event_info">
-                            <div class="in_dsc">[네이버예약 특별할인]<br>R석 50%, S석 60% 할인</div>
+                            <div class="in_dsc">${product.event}</div>
                         </div>
                     </div>
                 </div>
@@ -189,7 +193,7 @@ ${product}
                                     <li class="detail_info_lst">
                                         <strong class="in_tit">[소개]</strong>
                                         <p class="in_dsc">
-                                            웰메이드 창작 뮤지컬의 대표 브랜드 '김수로 프로젝트' 최신작! 연극, 뮤지컬, 무용 등 매년 작품성 있는 창작 공연을 선보이며, 대한민국 대표 웰메이드 창작 브랜드로 자리매김한 '김수로 프로젝트'의 최신작 입니다. 웰메이드 창작 뮤지컬의 대표 브랜드 '김수로 프로젝트' 최신작! 연극, 뮤지컬, 무용 등 매년 작품성 있는 창작 공연을 선보이며, 대한민국 대표 웰메이드 창작 브랜드로 자리매김한 '김수로 프로젝트'의 최신작 입니다.
+                                            ${product.productDetail.content}
                                         </p>
                                     </li>
                                     <li class="detail_info_lst"> <strong class="in_tit">[공지사항]</strong>
@@ -251,7 +255,14 @@ ${product}
             <span class="copyright">© NAVER Corp.</span>
         </div>
     </footer>
-    <div id="photoviwer"></div>
+    <div id="photoviewer"></div>
+    
+    
+    <script>
+    	function getEl() {
+    		return '${product}';
+    	}
+    </script>
 </body>
 
 </html>

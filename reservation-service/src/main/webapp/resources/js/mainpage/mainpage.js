@@ -4,8 +4,8 @@ requirejs.config({
         jquery: 'node_modules/jquery/dist/jquery.min',
         component: 'node_modules/@egjs/component/dist/component.min',
         handlebars: 'node_modules/handlebars/dist/handlebars.min',
-        count: "js/module/count",
-        product: "js/module/product",
+        count: "js/mainpage/count",
+        product: "js/mainpage/product",
         scroll: "js/module/scroll",
         slider: "js/module/slider"
     }
