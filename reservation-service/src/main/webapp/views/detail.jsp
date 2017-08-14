@@ -44,8 +44,7 @@
                         <div>
                             <div class="container_visual" style="width: 414px;">
                                 <ul class="visual_img">
-                                	<script type="text/handlebars" id = "product-template">
-									</script>
+                                	<script type="text/handlebars" id = "image-template">
 									{{#images}}
                                     <li class="item" style="width: 414px;"> <img alt="{{file.fileName}}" class="img_thumb" src="{{file.saveFileName}}"> 
                                     	<span class="img_bg"></span>
@@ -57,22 +56,7 @@
                                         </div>
                                     </li>
                                     {{/images}}
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
-                                        <div class="visual_txt">
-                                            <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span>${product.name}</span> </h2>
-                                                <p class="visual_txt_dsc"></p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170119_135/1484789767866RPO6o_JPEG/%B7%CE%B9%CC%BF%C0%C1%D9%B8%AE%BF%A7_1242.jpg?type=ff1242_1242"> <span class="img_bg"></span>
-                                        <div class="visual_txt">
-                                            <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span>${product.name}</span> </h2>
-                                                <p class="visual_txt_dsc"></p>
-                                            </div>
-                                        </div>
-                                    </li>
+									</script>
                                 </ul>
                             </div>
                             <div class="prev">
@@ -257,12 +241,12 @@
     </footer>
     <div id="photoviewer"></div>
     
-    
     <script>
     	function getEl() {
     		return '${product}';
     	}
     </script>
+    <script data-main="/resources/js/detail/detail" src="/resources/node_modules/requirejs/require.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-define(["jquery", "component","extend"],function($,Component,extend){
+define(["jquery", "component","extend2"],function($,Component,extend){
 
 	function Ticket($root,max){
 		this.$root = $root;

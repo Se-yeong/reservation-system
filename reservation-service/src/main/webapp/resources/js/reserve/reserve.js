@@ -16,7 +16,7 @@ requirejs.config({
     }
 });
 
-define(["jquery","ticket","preservator"], function($,Ticket,Preservator) {
+define(["jquery","ticket2","preservator"], function($,Ticket,Preservator) {
 	var preservator = new Preservator($(".section_booking_form"));
 	
 	var ticket = $(".qty").map(function(i,v){
