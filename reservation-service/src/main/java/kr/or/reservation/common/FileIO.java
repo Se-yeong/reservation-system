@@ -21,6 +21,7 @@ public class FileIO {
 		this.fileBaseDir = fileBaseDir;
 	}
 
+	// Static을 지우고 DI  
 	public static void readFile(String fileName, OutputStream outputStream) throws IOException {
 		String saveFileName = fileBaseDir + fileName;
 		log.info(saveFileName);

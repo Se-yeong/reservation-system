@@ -17,6 +17,7 @@ public class ProductServiceImpl implements ProductService {
 
 	ProductDao dao;
 	
+	// STATIC을 안 써도 문제없음.
 	static Map<Long, Long> cachedCount = new HashMap<>();
 	Logger log = Logger.getLogger(this.getClass());
 
@@ -49,12 +50,18 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectList(start, amount);
 	}
 
+	// timestamp를 찍어서, 계산 
+	// select 시, timestamp를 계산해서 일정 시간 이상일 경우 - update  
 	@Override
 	public Long selectCount() {
 		Long count = cachedCount.get((long) 0);
 		log.info("cached " + count);
 		if (count == null) {
 			count = dao.selectCount();
+			// 1. 동기화 구문을 건다.
+			//  - 성능 저하 
+			// 2. 별도로 batch를 돌림  
+			//  - spring 스케줄링을 통해 사용 가능 (별도의 스레드에서 수행됨) 
 			cachedCount.put((long) 0, count);
 			log.info("cache miss: " + 0);
 			return count;

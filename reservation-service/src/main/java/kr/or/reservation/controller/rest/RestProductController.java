@@ -56,6 +56,7 @@ public class RestProductController {
 		return service.selectCount(categoryId);
 	}
 
+	// 유틸로 
 	private int convertNulltoZero(Integer num) {
 		return num == null ? 0 : num.intValue();
 	}
