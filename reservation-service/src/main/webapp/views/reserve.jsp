@@ -34,9 +34,12 @@
                 <div class="group_visual">
                     <div class="container_visual" style="width: 414px;">
                         <ul class="visual_img">
-                            <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="https://ssl.phinf.net/naverbooking/20170217_264/1487312141947lTddT_JPEG/%B3%D7%C0%CC%B9%F6.jpg?type=ff1242_816"> <span class="img_bg"></span>
+                            <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="/download/file?filename='${product.productImage[0].file.saveFileName}'"> <span class="img_bg"></span>
                                 <div class="preview_txt">
-                                    <h2 class="preview_txt_tit">${product.name}</h2> <em class="preview_txt_dsc">₩ ${product.productPrices[fn:length(product.productPrices)-1].price } ~ </em><em class="preview_txt_dsc">${product.displayInfo.displayStart}~${product.displayInfo.displayEnd}</em> </div>
+                                    <h2 class="preview_txt_tit">${product.name}</h2> <em class="preview_txt_dsc">₩ ${product.productPrices[fn:length(product.productPrices)-1].price } ~ </em><em class="preview_txt_dsc">
+                                     	<fmt:formatDate value= "${product.displayInfo.displayStart}" pattern="yyyy.MM.dd (E)"/>
+                            			~<fmt:formatDate value= "${product.displayInfo.displayEnd}" pattern="yyyy.MM.dd (E)"/>
+                                    </em> </div>
                             </li>
                         </ul>
                     </div>
@@ -45,7 +48,9 @@
                     <div class="store_details">
                         <h3 class="in_tit">클림트 인사이드</h3>
                         <p class="dsc">
-                            장소 : ${product.displayInfo.placeLot} <br> 기간 : ${product.displayInfo.displayStart}~${product.displayInfo.displayEnd}
+                            	장소 : ${product.displayInfo.placeLot} <br> 기간 : 
+                            <fmt:formatDate value= "${product.displayInfo.displayStart}" pattern="yyyy.MM.dd (E)"/>
+                            ~<fmt:formatDate value= "${product.displayInfo.displayEnd}" pattern="yyyy.MM.dd (E)"/>
                         </p>
                         <h3 class="in_tit">관람시간</h3>
                         <p class="dsc">
@@ -68,9 +73,9 @@
 								      	기타
 								    </c:otherwise>
 								</c:choose>
-						       ${ price.price - (price.price * price.discountRate) } 원  <br>
+						         <fmt:formatNumber value="${ price.price - (price.price * price.discountRate) }" pattern="#,###" /> 원  <br>
 							</c:forEach>
-                              ${product.event}
+							  ${product.event}
 							<hr>
                         </p>
                     </div>
@@ -87,7 +92,7 @@
                                     </a>
                                 </div>
                                 <!-- [D] 금액이 0 이상이면 individual_price에 on_color 추가 -->
-                                <div class="individual_price"><span class="total_price">123,000</span><span class="price_type">원</span></div>
+                                <div class="individual_price"><span class="total_price">0</span><span class="price_type">원</span></div>
                             </div>
                             <div class="qty_info_icon"> <strong class="product_amount"> 
                             <c:choose>
@@ -104,7 +109,13 @@
 							      	기타
 							    </c:otherwise>
 							</c:choose>
-                            </strong> <strong class="product_price"> <span class="price"> ${ price.price - (price.price * price.discountRate) }</span> <span class="price_type">원</span> </strong> <em class="product_dsc"> ${ price.price - (price.price * price.discountRate) } (${ price.discountRate *100 }% 할인가)</em> </div>
+                            </strong> <strong class="product_price"> <span class="price">
+                            <fmt:formatNumber value="${ price.price - (price.price * price.discountRate) }" pattern="#,###" />
+							</span> <span class="price_type">원</span> </strong> <em class="product_dsc"> 
+							  <fmt:formatNumber value="${ price.price - (price.price * price.discountRate) }" pattern="#,###" />
+							  (
+							  <fmt:formatNumber value="${ price.discountRate *100  }" pattern="#,###" />
+							 	% 할인가)</em> </div>
                         </div>
 						</c:forEach>
                     </div>
@@ -126,7 +137,10 @@
                                 </div>
                                 <div class="inline_form last"> <label class="label" for="message">예매내용</label>
                                     <div class="inline_control">
-                                        <p class="inline_txt selected">2017.2.17.(금)~2017.4.18.(화), 총 <span id ="amount">0</span>매</p>
+                                        <p class="inline_txt selected">
+                                         <fmt:formatDate value= "${product.displayInfo.displayStart}" pattern="yyyy.MM.dd (E)"/>
+                            			~<fmt:formatDate value= "${product.displayInfo.displayEnd}" pattern="yyyy.MM.dd (E)"/>
+                                        , 총 <span id ="amount">0</span>매</p>
                                     </div>
                                 </div>
                             </form>

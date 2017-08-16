@@ -43,7 +43,6 @@ define(["jquery", "component","extend"],function($,Component,extend){
 				$btn.off("click");
 				$btn.addClass("disabled");
 			}
-			console.log($otherBtn);
 			if($otherBtn.hasClass("disabled")){
 				$otherBtn.removeClass("disabled");
 				$otherBtn.on("click",this[state].bind(this));
