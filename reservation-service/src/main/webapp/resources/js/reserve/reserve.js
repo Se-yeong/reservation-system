@@ -16,7 +16,6 @@ requirejs.config({
 });
 
 define(["jquery","ticket","preservator"], function($,Ticket,Preservator) {
-	
 	var preservator = new Preservator($(".section_booking_form"));
 	
 	var ticketList = $(".qty").map(function(i,v){
@@ -24,7 +23,6 @@ define(["jquery","ticket","preservator"], function($,Ticket,Preservator) {
 		ticket.on("changeAmount",preservator.updateAmount.bind(preservator));
 		return ticket;
 	});
-	
 	
 });
 
