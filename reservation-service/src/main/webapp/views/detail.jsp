@@ -242,7 +242,7 @@
     <div id="photoviewer"></div>
     
     <script>
-    	function getEl() {
+    	function getProductByEl() {
     		return JSON.parse('${product}');
     	}
     </script>

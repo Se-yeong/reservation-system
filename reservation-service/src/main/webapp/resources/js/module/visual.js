@@ -7,24 +7,24 @@ define([ "jquery", "handlebars", "component", "extend2" ], function($,Handlebars
 		this.$root = setting.$root;
 		this.source = setting.handlebarsElement;
 		this.template;
-		this.init();
+		this.length;
 		
+		this.init();
 	}
 	
 	Visual.prototype.constructor = Visual;
 	
 	Visual.prototype.init = function() {
 		this.template = Handlebars.compile(this.source);
-		
 	}
 
-	
-	Visual.prototype.getImagesByEl = function(product) {
+	Visual.prototype.getImages = function(product) {
 		this.makeVisual(product.productImage);
+		return Promise.resolve();
 	}
 	
 	Visual.prototype.getImagesByAjax = function(url) {
-		$.ajax({
+		return $.ajax({
 			url : this.url,
 			method : "GET",
 			dataType : 'json'
@@ -33,17 +33,20 @@ define([ "jquery", "handlebars", "component", "extend2" ], function($,Handlebars
 
 	Visual.prototype.makeVisual = function(data) {
 		
+		this.length = data.length;
+		
 		var images = [];
 		data.forEach(function(v, i) {
 			images.push(v.file);
 		});
-		
 		var result = this.template({images: images});
 		this.$root.find(".visual_img").append(result);
 	}
 	
-	
-	
+	Visual.prototype.getLength = function() {
+		return this.length;
+	}
+
 	var visual = extend(Component, Visual.prototype);
 
 	

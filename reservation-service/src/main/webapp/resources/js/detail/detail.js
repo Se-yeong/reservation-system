@@ -10,20 +10,38 @@ requirejs.config({
     }
 });
 
-define(["jquery","visual"], function($,Visual) {
+define(["jquery", "visual", "slider"], function($, Visual, Slider) {
 	
-	var product = getEl();
+	var IMAGE_SIZE = 414;
 	
+	var product = getProductByEl();
+	var visual;
+	var slider;
 	
-	var setting  = {
-			$root  : $(".section_visual"),
-			handlebarsElement : $("#image-template").html()
-	};
+	initVisual().then(initSlider);
 	
-	var visual = new Visual(setting);
+	function initVisual() {
+		var setting  = {
+				$root  : $(".section_visual"),
+				handlebarsElement : $("#image-template").html()
+		};
+		
+		visual = new Visual(setting);
+		
+		return visual.getImages(product);
+	}
 	
-	console.log(visual);
-	visual.getImagesByEl(product);
+	function initSlider() {
+		var setting  = {
+				$root  : $(".section_visual"),
+				length : visual.getLength(),
+				size : IMAGE_SIZE,
+				endFlag : true,
+				autoFlag : false
+		};
+		
+		slider = new Slider(setting);
+	}
+	
 
-	
 });

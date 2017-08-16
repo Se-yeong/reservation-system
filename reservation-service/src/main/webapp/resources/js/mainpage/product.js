@@ -17,7 +17,7 @@ define(["jquery","handlebars"], function($, Handlebars) {
 		return $.ajax({
 			url : url + "?start=" + start + "&amount=" + amount,
 			dataType : "json"
-		}).then(showProduct.bind(this, method));
+		}).then(makeProductList.bind(this, method));
 	}
 	
 	

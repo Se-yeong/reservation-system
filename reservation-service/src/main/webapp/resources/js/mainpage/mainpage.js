@@ -31,7 +31,7 @@ define(["jquery", "count", "product", "scroll", "slider"], function($, Count, Pr
 		
 		getData();
 		scollEvnetHandler();
-		sliderInit();
+		initSlider();
 	}
 	
 	
@@ -59,7 +59,7 @@ define(["jquery", "count", "product", "scroll", "slider"], function($, Count, Pr
 	
 	}
 	
-	function sliderInit(Slider) {
+	function initSlider(Slider) {
 		var setting  = {
 				root  : $(".section_visual"),
 				length : 2,

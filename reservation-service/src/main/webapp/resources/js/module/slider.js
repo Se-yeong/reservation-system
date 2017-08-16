@@ -1,6 +1,6 @@
 define(["jquery", "component"], function($, Component){
 	function Slider(setting) {
-		this.root = setting.root;
+		this.$root = setting.$root;
 		this.length = setting.length || 2;
 		this.size = setting.size || 338;
 		this.endFlag = setting.endFlag;
@@ -17,10 +17,11 @@ define(["jquery", "component"], function($, Component){
 	Slider.prototype.constructor = Slider;
 	
 	Slider.prototype.init = function() {
-		this.root.find(".nxt_inn").on("click", this.goRight.bind(this));
-		this.root.find(".prev_inn").on("click", this.goLeft.bind(this));
-		this.root.find(".nxt_inn , .prev_inn").on("click", this.pause.bind(this));
-		this.autoSlide();
+		this.$root.find(".nxt_inn").on("click", this.goRight.bind(this));
+		this.$root.find(".prev_inn").on("click", this.goLeft.bind(this));
+		this.$root.find(".nxt_inn , .prev_inn").on("click", this.pause.bind(this));
+		this.autoSlide();	
+		this.paginate();
 	}
 
 	Slider.prototype.autoSlide = function(){
@@ -46,6 +47,7 @@ define(["jquery", "component"], function($, Component){
 			this.position--;
 			this.move("slow");
 		}
+		this.updatePage();
 	}
 	
 	Slider.prototype.goRight = function() {
@@ -59,12 +61,28 @@ define(["jquery", "component"], function($, Component){
 			this.position = 1;
 			this.move(0);
 		}
+		
 	}
-
+	
+	// 
 	Slider.prototype.move = function(speed, callback) {
-		return this.root.find(".visual_img").animate({
-			"left": ( -(this.position-1) * this.size ) + "px"
-		}, speed).promise();
+		return this.$root.find(".visual_img").animate({
+				"left": ( -(this.position-1) * this.size ) + "px"
+			}, {
+				duration: speed,
+				start: this.updatePage.bind(this)
+			}).promise();
+	}
+	
+	Slider.prototype.paginate = function() {
+		console.log(this.$root);
+		this.$root.find(".figure_pagination > .num.off > span").html(this.length);
+		this.updatePage();
+		this.pageFlag = true;
+	}
+	
+	Slider.prototype.updatePage = function(position) {
+		this.$root.find(".figure_pagination > .num:not(.off)").html(this.position);
 	}
 	
 	return Slider;
