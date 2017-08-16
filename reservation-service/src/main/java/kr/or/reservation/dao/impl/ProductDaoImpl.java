@@ -23,6 +23,7 @@ import kr.or.reservation.domain.File;
 import kr.or.reservation.domain.Product;
 import kr.or.reservation.domain.ProductDetail;
 import kr.or.reservation.domain.ProductImage;
+import kr.or.reservation.domain.ProductPrice;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
@@ -30,6 +31,7 @@ public class ProductDaoImpl implements ProductDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private RowMapper<Product> rowMapper = new ProductMapper();
 	private RowMapper<Product> imageMapper = new ImageMapper();
+	private RowMapper<Product> PriceMapper = new PriceMapper();
 
 	Logger log = Logger.getLogger(this.getClass());
 
@@ -72,6 +74,12 @@ public class ProductDaoImpl implements ProductDao {
 	public Long selectCount(long categoryId) {
 		Map<String, Long> params = Collections.singletonMap("categoryId", categoryId);
 		return jdbc.queryForObject(ProductSqls.SELECT_COUNT_BY_CATEGORY_ID, params, long.class);
+	}
+
+	@Override
+	public Product selectOnePrice(long id) {
+		Map<String, Long> params = Collections.singletonMap("id", id);
+		return jdbc.queryForObject(ProductSqls.SELECT_ONE_PRICE, params, PriceMapper);
 	}
 
 	private class ProductMapper implements RowMapper<Product> {
@@ -160,26 +168,66 @@ public class ProductDaoImpl implements ProductDao {
 			File file = null;
 
 			try {
+				rs.beforeFirst();
 				while (rs.next()) {
 					file = new File();
 					file.setContentType(rs.getString("content_type"));
-					//file.setCreateDate(rs.getString(createDate));
+					// file.setCreateDate(rs.getString(createDate));
 					file.setDeleteFlag(rs.getInt("delete_flag"));
 					file.setFileLength(rs.getInt("file_length"));
 					file.setFileName(rs.getString("file_name"));
 					file.setId(rs.getInt("id"));
 					file.setSaveFileName(rs.getString("save_file_name"));
 					file.setUserId(rs.getInt("user_id"));
-					
+
 					image = new ProductImage();
 					image.setFile(file);
 					image.setFileId(rs.getInt("file_id"));
-					//image.setId(rs.getInt("id"));
-					//image.setProductId(rs.getInt("product_id"));
+					// image.setId(rs.getInt("id"));
+					// image.setProductId(rs.getInt("product_id"));
 					image.setType(rs.getInt("type"));
-					
+
 					list.add(image);
 				}
+
+			} catch (SQLException e) {
+				log.debug("image is not found");
+				return null;
+			}
+
+			return list;
+		}
+
+	}
+
+	private class PriceMapper extends ProductMapper {
+
+		@Override
+		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Product product = super.mapRow(rs, rowNum);
+			product.setProductPrices(mapPrice(rs));
+			return product;
+		}
+
+		//
+		public List<ProductPrice> mapPrice(ResultSet rs) throws SQLException {
+			List<ProductPrice> list = new ArrayList<ProductPrice>();
+			ProductPrice price = null;
+
+			try {
+				rs.beforeFirst();
+				while (rs.next()) {
+					price = new ProductPrice();
+					// price.setId(id);
+					// price.setProductId(productId);
+					price.setPriceType(rs.getInt("price_type"));
+					price.setPrice(rs.getLong("price"));
+					price.setDiscountRate(rs.getString("discount_rate"));
+					// price.setCreateDate(rs.getTimestamp("create_date"));
+					// price.setModifyDate(rs.getTimestamp("modify_date"));
+					list.add(price);
+				}
+				log.info("here" + list.toString());
 
 			} catch (SQLException e) {
 				log.debug("image is not found");

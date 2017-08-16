@@ -87,4 +87,14 @@ public class ProductServiceImpl implements ProductService {
 		return count;
 	}
 
+	@Override
+	public Product selectOnePrice(long id) {
+		if (id <= 0) {
+			return null;
+		}
+		return dao.selectOnePrice(id);
+	}
+	
+	
+
 }

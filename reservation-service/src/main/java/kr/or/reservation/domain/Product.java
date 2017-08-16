@@ -23,6 +23,7 @@ public class Product {
 	private ProductDetail productDetail;
 	private DisplayInfo displayInfo;
 	private List<ProductImage> productImage;
+	private List<ProductPrice> productPrices;
 
 	public long getId() {
 		return id;
@@ -128,10 +129,18 @@ public class Product {
 		this.productImage = productImage;
 	}
 
+	public List<ProductPrice> getProductPrices() {
+		return productPrices;
+	}
+
+	public void setProductPrices(List<ProductPrice> productPrices) {
+		this.productPrices = productPrices;
+	}
+
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, new ToStringStyleCustom());
-		//return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+		// return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
 	}
 
 }

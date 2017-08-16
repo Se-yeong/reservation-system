@@ -14,4 +14,6 @@ public interface ProductService {
 	public Long selectCount();
 	
 	public Long selectCount(long categoryId);
+	
+	public Product selectOnePrice(long id);
 }

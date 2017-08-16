@@ -24,5 +24,11 @@ public class ProductSqls {
 
 
 	public static final String SELECT_COUNT_BY_CATEGORY_ID = "SELECT count(*) FROM product WHERE category_id = :categoryId";
+	
+	public static final String SELECT_ONE_PRICE ="SELECT * FROM product INNER JOIN product_price " + 
+			"ON product.id  = product_price.product_id " + 
+			"LEFT OUTER JOIN display_info " + 
+			"ON product.id = display_info.product_id " + 
+			"where product.id = :id";
 
 }

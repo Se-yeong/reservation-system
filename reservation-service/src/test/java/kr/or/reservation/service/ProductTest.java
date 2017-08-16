@@ -43,7 +43,7 @@ public class ProductTest {
 	public void shouldSelectOne() {
 		Product products = service.selectOne(2);
 		log.info("shouldSelectOne: " + products.toString());
-		
+
 		Assert.assertNotNull(products);
 	}
 
@@ -59,6 +59,14 @@ public class ProductTest {
 		Long count = service.selectCount(1);
 		log.info("shouldSelectCountByCategoryId: " + count.toString());
 		Assert.assertNotNull(count);
+	}
+
+	@Test
+	public void shouldSelectOnePrice() {
+		Product products = service.selectOnePrice(2);
+		log.info("shouldSelectOnePrice: " + products.getProductPrices().toString());
+
+		Assert.assertNotNull(products);
 	}
 
 }
