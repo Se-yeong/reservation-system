@@ -5,7 +5,6 @@ define(["jquery", "component","extend"],function($,Component,extend){
 		init : function($root,max){
 			this.$root = $root;
 			this.max = max || 10;
-			
 			this.count = 0;
 			this.$count = this.$root.find("[type = tel]");
 			
@@ -17,24 +16,38 @@ define(["jquery", "component","extend"],function($,Component,extend){
 			this.$minusBtn = this.$root.find(".ico_minus3 ");
 			this.$plusBtn = this.$root.find(".ico_plus3");
 			
-			this.$minusBtn.on("click",this.minus.bind(this));
 			this.$plusBtn.on("click",this.plus.bind(this));
 		},
 		plus : function(event){
 			event.preventDefault(); 
 			++this.count;
 			this.updateText("plus");	
+			this.updateBtnState(this.max,this.$plusBtn,this.$minusBtn,"minus");
+		
 		},
 		// 개수 체크하는 부분 필요 
 		minus : function(event){
 			event.preventDefault();
 			--this.count;
 			this.updateText("minus");
+			this.updateBtnState(0,this.$minusBtn,this.$plusBtn,"plus");
+			
 		},
 		updateText : function(state){
 			this.$count.val(this.count);
 			this.updateSum();
 			this.trigger("changeAmount",{state : state});
+		},
+		updateBtnState : function(point,$btn,$otherBtn,state){
+			if(this.count === point){
+				$btn.off("click");
+				$btn.addClass("disabled");
+			}
+			console.log($otherBtn);
+			if($otherBtn.hasClass("disabled")){
+				$otherBtn.removeClass("disabled");
+				$otherBtn.on("click",this[state].bind(this));
+			}
 		},
 		updateSum : function(){
 			this.priceSum = this.count * this.price;

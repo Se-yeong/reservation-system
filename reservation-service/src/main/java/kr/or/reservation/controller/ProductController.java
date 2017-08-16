@@ -27,4 +27,11 @@ public class ProductController {
 		return "detail";
 	}
 
+	@GetMapping("/product/{productId}/reservation")
+	public String viewReserve(Model model,@PathVariable long productId) {
+		
+
+		return "reserve";
+	}
+
 }

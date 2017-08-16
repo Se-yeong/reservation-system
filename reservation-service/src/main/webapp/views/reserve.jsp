@@ -72,7 +72,7 @@
                         <div class="qty">
                             <div class="count_control">
                                 <div class="clearfix">
-                                    <a href="#" class="btn_plus_minus spr_book2 ico_minus3" title="빼기"> </a> <input type="tel" class="count_control_input" value="10" readonly title="수량">
+                                    <a href="#" class="btn_plus_minus spr_book2 ico_minus3 disabled" title="빼기"> </a> <input type="tel" class="count_control_input" value="0" readonly title="수량">
                                     <a href="#" class="btn_plus_minus spr_book2 ico_plus3" title="더하기">
                                     </a>
                                 </div>
@@ -83,8 +83,8 @@
                         <div class="qty">
                             <div class="count_control">
                                 <div class="clearfix">
-                                    <a href="#" class="btn_plus_minus spr_book2 ico_minus3" title="빼기"> </a> <input type="tel" class="count_control_input" value="3" readonly title="수량">
-                                    <a href="#" class="btn_plus_minus spr_book2 ico_plus3" title="더하기">
+                                    <a  class="btn_plus_minus spr_book2 ico_minus3 disabled" title="빼기"> </a> <input type="tel" class="count_control_input" value="0" readonly title="수량">
+                                    <a href="" class="btn_plus_minus spr_book2 ico_plus3" title="더하기">
                                     </a>
                                 </div>
                                 <div class="individual_price on_color"><span class="total_price">123,000</span><span class="price_type">원</span></div>
@@ -94,7 +94,7 @@
                         <div class="qty">
                             <div class="count_control">
                                 <div class="clearfix">
-                                    <a href="#" class="btn_plus_minus spr_book2 ico_minus3" title="빼기"> </a> <input type="tel" class="count_control_input" value="3" readonly title="수량">
+                                    <a href="#" class="btn_plus_minus spr_book2 ico_minus3 disabled" title="빼기"> </a> <input type="tel" class="count_control_input" value="0" readonly title="수량">
                                     <a href="#" class="btn_plus_minus spr_book2 ico_plus3" title="더하기">
                                     </a>
                                 </div>

@@ -10,8 +10,7 @@ requirejs.config({
         ticket : "js/reserve/ticket",
         ticket2 : "js/reserve/ticket.function",
         preservator : "js/reserve/preservator",
-        extend : "js/lib/extend",
-        extend2 : "js/lib/extend.function"
+        extend : "js/lib/extend"
         
     }
 });
