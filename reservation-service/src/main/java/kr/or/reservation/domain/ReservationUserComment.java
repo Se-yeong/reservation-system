@@ -3,7 +3,8 @@ package kr.or.reservation.domain;
 import java.sql.Timestamp;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+
+import kr.or.reservation.common.ToStringStyleCustom;
 
 public class ReservationUserComment {
 	private long id;
@@ -13,9 +14,7 @@ public class ReservationUserComment {
 	private String comment;
 	private Timestamp createDate;
 	private Timestamp modifyDate;
-
-	private User user;
-	private Product product;
+	private String firstImageSaveFileName;
 
 	public long getId() {
 		return id;
@@ -73,24 +72,17 @@ public class ReservationUserComment {
 		this.modifyDate = modifyDate;
 	}
 
-	public User getUser() {
-		return user;
+	public String getFirstImageSaveFileName() {
+		return firstImageSaveFileName;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setFirstImageSaveFileName(String firstImageSaveFileName) {
+		this.firstImageSaveFileName = firstImageSaveFileName;
 	}
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+		return ToStringBuilder.reflectionToString(this, new ToStringStyleCustom() );
 	}
+	
 }

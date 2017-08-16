@@ -59,9 +59,9 @@ define(["jquery", "count", "product", "scroll", "slider"], function($, Count, Pr
 	
 	}
 	
-	function initSlider(Slider) {
+	function initSlider() {
 		var setting  = {
-				root  : $(".section_visual"),
+				$root  : $(".section_visual"),
 				length : 2,
 				size : 338,
 				endFlag : false,

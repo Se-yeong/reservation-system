@@ -47,7 +47,6 @@ define(["jquery", "component"], function($, Component){
 			this.position--;
 			this.move("slow");
 		}
-		this.updatePage();
 	}
 	
 	Slider.prototype.goRight = function() {
@@ -61,7 +60,6 @@ define(["jquery", "component"], function($, Component){
 			this.position = 1;
 			this.move(0);
 		}
-		
 	}
 	
 	// 
@@ -75,10 +73,9 @@ define(["jquery", "component"], function($, Component){
 	}
 	
 	Slider.prototype.paginate = function() {
-		console.log(this.$root);
+		
 		this.$root.find(".figure_pagination > .num.off > span").html(this.length);
 		this.updatePage();
-		this.pageFlag = true;
 	}
 	
 	Slider.prototype.updatePage = function(position) {

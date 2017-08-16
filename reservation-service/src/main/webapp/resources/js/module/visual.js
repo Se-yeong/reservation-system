@@ -1,8 +1,5 @@
 define([ "jquery", "handlebars", "component", "extend2" ], function($,Handlebars, Component, extend) {
 
-
-// handlebarsElement :  $("#image-template").html() 
-
 	function Visual(setting) {
 		this.$root = setting.$root;
 		this.source = setting.handlebarsElement;
