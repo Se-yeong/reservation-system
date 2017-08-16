@@ -129,7 +129,7 @@
 	{{#item}}
     <li class="item">
         <a href="/product/{{id}}" class="item_book">
-            <div class="item_preview"> <img alt="{{name}}" class="img_thumb" src="{{productImage.file.saveFileName}}">                                    
+            <div class="item_preview"> <img alt="{{name}}" class="img_thumb" src="{{firstImageSaveFileName}}">                                    
 				<span class="img_border"></span> 
 			</div>
             <div class="event_txt">

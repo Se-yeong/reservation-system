@@ -32,3 +32,5 @@ FROM product
 LEFT OUTER JOIN product_detail ON product.id = product_detail.product_id
 LEFT OUTER JOIN display_info ON product.id = display_info.product_id
 WHERE product.id= 1;
+
+

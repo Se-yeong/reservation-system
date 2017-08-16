@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 import kr.or.reservation.common.ToStringStyleCustom;
 
@@ -19,6 +18,7 @@ public class Product {
 	private String event;
 	private Timestamp createDate;
 	private Timestamp modifyDate;
+	private String firstImageSaveFileName;
 
 	private ProductDetail productDetail;
 	private DisplayInfo displayInfo;
@@ -103,6 +103,14 @@ public class Product {
 
 	public void setModifyDate(Timestamp modifyDate) {
 		this.modifyDate = modifyDate;
+	}
+
+	public String getFirstImageSaveFileName() {
+		return firstImageSaveFileName;
+	}
+
+	public void setFirstImageSaveFileName(String firstImageSaveFileName) {
+		this.firstImageSaveFileName = firstImageSaveFileName;
 	}
 
 	public ProductDetail getProductDetail() {

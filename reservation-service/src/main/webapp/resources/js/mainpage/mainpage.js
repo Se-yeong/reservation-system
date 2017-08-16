@@ -54,7 +54,7 @@ define(["jquery", "count", "product", "scroll", "slider"], function($, Count, Pr
 		scroll.on("scrollEnd",function(){
 			var amount = 8;
 			scroll.off("scrollEnd");
-			Product.getProduct(categoryId, amount, "append").then(scollEvnetHandler);
+			Product.getProductList(categoryId, amount, "append").then(scollEvnetHandler);
 		});
 	
 	}

@@ -107,6 +107,7 @@ public class ProductDaoImpl implements ProductDao {
 			product.setEvent(rs.getString("event"));
 			product.setCreateDate(rs.getTimestamp("create_date"));
 			product.setModifyDate(rs.getTimestamp("modify_date"));
+			product.setFirstImageSaveFileName(rs.getString("first_image_save_file_name"));
 
 			return product;
 		}
@@ -151,7 +152,7 @@ public class ProductDaoImpl implements ProductDao {
 
 			return display;
 		}
-
+		
 	}
 
 	private class ImageMapper extends ProductMapper {
@@ -162,7 +163,8 @@ public class ProductDaoImpl implements ProductDao {
 			product.setProductImage(mapImage(rs));
 			return product;
 		}
-
+		
+		
 		public List<ProductImage> mapImage(ResultSet rs) throws SQLException {
 			List<ProductImage> list = new ArrayList<ProductImage>();
 			ProductImage image = null;
