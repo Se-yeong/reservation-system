@@ -20,6 +20,7 @@ import kr.or.reservation.dao.ProductDao;
 import kr.or.reservation.dao.sqls.ProductSqls;
 import kr.or.reservation.domain.DisplayInfo;
 import kr.or.reservation.domain.File;
+import kr.or.reservation.domain.PriceType;
 import kr.or.reservation.domain.Product;
 import kr.or.reservation.domain.ProductDetail;
 import kr.or.reservation.domain.ProductImage;
@@ -220,20 +221,18 @@ public class ProductDaoImpl implements ProductDao {
 					price = new ProductPrice();
 					// price.setId(id);
 					// price.setProductId(productId);
-					price.setPriceType(rs.getInt("price_type"));
+					price.setPriceType(PriceType.values()[rs.getInt("price_type")-1]);
 					price.setPrice(rs.getLong("price"));
 					price.setDiscountRate(rs.getString("discount_rate"));
 					// price.setCreateDate(rs.getTimestamp("create_date"));
 					// price.setModifyDate(rs.getTimestamp("modify_date"));
 					list.add(price);
 				}
-				log.info("here" + list.toString());
 
 			} catch (SQLException e) {
 				log.debug("image is not found");
 				return null;
 			}
-
 			return list;
 		}
 

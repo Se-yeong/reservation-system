@@ -27,10 +27,9 @@ public class ProductController {
 		return "detail";
 	}
 
-	@GetMapping("/product/{productId}/reservation")
-	public String viewReserve(Model model,@PathVariable long productId) {
-		
-
+	@GetMapping("/{productId}/reservation")
+	public String viewReserve(Model model, @PathVariable long productId) {
+		model.addAttribute("product",productService.selectOnePrice(productId));
 		return "reserve";
 	}
 

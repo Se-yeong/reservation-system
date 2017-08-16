@@ -9,7 +9,7 @@ public class ProductPrice {
 
 	private long id;
 	private long productId;
-	private int priceType;
+	private PriceType priceType;
 	private long price;
 	private String discountRate;
 	private Timestamp createDate;
@@ -31,11 +31,11 @@ public class ProductPrice {
 		this.productId = productId;
 	}
 
-	public int getPriceType() {
+	public PriceType getPriceType() {
 		return priceType;
 	}
 
-	public void setPriceType(int priceType) {
+	public void setPriceType(PriceType priceType) {
 		this.priceType = priceType;
 	}
 
@@ -75,4 +75,5 @@ public class ProductPrice {
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
 	}
+
 }

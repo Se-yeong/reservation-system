@@ -64,7 +64,7 @@ public class ProductTest {
 	@Test
 	public void shouldSelectOnePrice() {
 		Product products = service.selectOnePrice(2);
-		log.info("shouldSelectOnePrice: " + products.getProductPrices().toString());
+		log.info("shouldSelectOnePrice: " + products.toString());
 
 		Assert.assertNotNull(products);
 	}
