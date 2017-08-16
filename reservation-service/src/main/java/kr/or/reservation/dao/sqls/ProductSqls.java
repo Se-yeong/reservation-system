@@ -27,8 +27,10 @@ public class ProductSqls {
 	
 	public static final String SELECT_ONE_PRICE ="SELECT * FROM product INNER JOIN product_price " + 
 			"ON product.id  = product_price.product_id " + 
+			"INNER JOIN product_image ON  product.id =product_image.product_id " + 
+			"INNER JOIN file ON product_image.file_id = file.id " + 
 			"LEFT OUTER JOIN display_info " + 
 			"ON product.id = display_info.product_id " + 
-			"WHERE product.id = :id ;";
+			"WHERE product.id = :id and product_image.type = 1; ";
 
 }

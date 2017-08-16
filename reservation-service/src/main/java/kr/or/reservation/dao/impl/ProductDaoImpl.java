@@ -201,7 +201,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	}
 
-	private class PriceMapper extends ProductMapper {
+	private class PriceMapper extends ImageMapper {
 
 		@Override
 		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
