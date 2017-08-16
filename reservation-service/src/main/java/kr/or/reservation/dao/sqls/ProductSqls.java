@@ -29,6 +29,6 @@ public class ProductSqls {
 			"ON product.id  = product_price.product_id " + 
 			"LEFT OUTER JOIN display_info " + 
 			"ON product.id = display_info.product_id " + 
-			"where product.id = :id";
+			"WHERE product.id = :id ;";
 
 }
