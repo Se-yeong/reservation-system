@@ -12,7 +12,7 @@ import kr.or.reservation.service.ProductService;
 
 @Controller
 @RequestMapping("/product")
-public class DetailController {
+public class ProductController {
 
 	ProductService productService;
 

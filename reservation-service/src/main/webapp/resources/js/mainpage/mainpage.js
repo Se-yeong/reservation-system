@@ -7,27 +7,35 @@ requirejs.config({
         count: "js/mainpage/count",
         product: "js/mainpage/product",
         scroll: "js/module/scroll",
-        slider: "js/module/slider"
+        slider: "js/module/slider",
+        extend2 : "js/lib/extend.function"
     }
 });
 
-define(["jquery", "count", "product", "scroll"], function($, CountModule, ProductModule, Scroll) {
+define(["jquery", "count", "product", "scroll", "slider"], function($, Count, Product, Scroll, Slider) {
 	var categoryId =0;
 	var scroll = new Scroll();
 	var slider;
 
-	// 이부분이 init 
-	$(".tab_lst_min > .item:last > .anchor").addClass("last");
-	$(".event_tab_lst > .item").on("click", categoryClick);
-
-	// 보류 ... bind에 대하여 질문할 것. 
-	$(window).on("scroll", function(){
-		scroll.scrollEnd();
-	}.bind(this));
+	init();
 	
-	getData();
-	scollEvnetHandler();
-
+	
+	
+	function init() {
+		$(".tab_lst_min > .item:last > .anchor").addClass("last");
+		$(".event_tab_lst > .item").on("click", categoryClick);
+		
+		$(window).on("scroll", function(){
+			scroll.scrollEnd();
+		});
+		
+		getData();
+		scollEvnetHandler();
+		sliderInit();
+	}
+	
+	
+	
 	function categoryClick() {
 		categoryId = $(this).data("category");
 		$(".anchor.active").removeClass("active");
@@ -38,20 +46,20 @@ define(["jquery", "count", "product", "scroll"], function($, CountModule, Produc
 	
 	function getData() {
 		var amount = 4;
-		CountModule.getCount(categoryId);
-		ProductModule.getProduct(categoryId, amount, "html");
+		Count.getCount(categoryId);
+		Product.getProductList(categoryId, amount, "html");
 	}
 	
 	function scollEvnetHandler(){
 		scroll.on("scrollEnd",function(){
 			var amount = 8;
 			scroll.off("scrollEnd");
-			ProductModule.getProduct(categoryId, amount, "append").then(scollEvnetHandler);
+			Product.getProduct(categoryId, amount, "append").then(scollEvnetHandler);
 		});
 	
 	}
 	
-	require(["slider"], function(Slider){
+	function sliderInit(Slider) {
 		var setting  = {
 				root  : $(".section_visual"),
 				length : 2,
@@ -60,6 +68,6 @@ define(["jquery", "count", "product", "scroll"], function($, CountModule, Produc
 				autoFlag : true
 		};
 		slider = new Slider(setting);
-	});
+	}
 	
 });

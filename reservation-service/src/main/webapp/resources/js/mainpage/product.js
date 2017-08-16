@@ -3,7 +3,7 @@ define(["jquery","handlebars"], function($, Handlebars) {
 	var source = $("#product-template").html();
 	var template = Handlebars.compile(source);
 	
-	function getProduct(categoryId,amount,method){
+	function getProductList(categoryId,amount,method){
 		var url = "api/product";
 		
 		if(method ==="html"){
@@ -21,7 +21,7 @@ define(["jquery","handlebars"], function($, Handlebars) {
 	}
 	
 	
-	function showProduct(method, data) {
+	function makeProductList(method, data) {
 		var left = [];
 		var right =[];
 		
@@ -37,6 +37,6 @@ define(["jquery","handlebars"], function($, Handlebars) {
 		$(".lst_event_box:last")[method](template( {item: right} ));
 	}
 	return {
-		getProduct : getProduct
+		getProductList : getProductList
 	}
 });

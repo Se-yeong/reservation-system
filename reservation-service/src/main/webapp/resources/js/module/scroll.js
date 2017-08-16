@@ -1,9 +1,8 @@
-define(["jquery", "component"], function($, Component) {
+define(["jquery", "component", "extend2"], function($, Component, extend) {
 	function Scroll(){
 		
 	}
 
-	Scroll.prototype = new Component();
 	Scroll.prototype.constructor = Scroll;
 
 	Scroll.prototype.scrollEnd = function(){
@@ -16,6 +15,6 @@ define(["jquery", "component"], function($, Component) {
 		}
 	}
 	
-	return Scroll;
+	return extend(Component, Scroll.prototype);
 		
 });
