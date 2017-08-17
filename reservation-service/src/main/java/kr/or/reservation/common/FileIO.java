@@ -12,13 +12,13 @@ import org.springframework.util.FileCopyUtils;
 @Component
 public class FileIO {
 
-	private static String fileBaseDir;
+	private static String FILE_BASE_DIR;
 
 	static Logger log = Logger.getLogger(FileIO.class);
 
 	@Autowired
 	public FileIO(String fileBaseDir) {
-		this.fileBaseDir = fileBaseDir;
+		this.FILE_BASE_DIR = fileBaseDir;
 	}
 
 	// Static을 지우고 DI

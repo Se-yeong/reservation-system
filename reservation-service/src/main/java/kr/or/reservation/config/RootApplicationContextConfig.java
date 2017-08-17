@@ -14,12 +14,26 @@ import org.springframework.context.annotation.PropertySource;
 public class RootApplicationContextConfig {
 
 	@Value("${file.baseDir}")
-	private String fileBaseDir;
+	private String FILE_BASE_DIR;
 	
+	@Value("${naver.client.id}")
+	private String NAVER_CLIENT_ID;
 	
+	@Value("${naver.client.secret}")
+	private String NAVER_CLIENT_SECRET;
 
 	@Bean
-	public String fileBaseDir() {
-		return fileBaseDir;
+	public String getFileBaseDir() {
+		return FILE_BASE_DIR;
+	}
+	
+	@Bean
+	public String getNaverClientId() {
+		return NAVER_CLIENT_ID;
+	}
+	
+	@Bean
+	public String getNaverClientSecret() {
+		return NAVER_CLIENT_SECRET;
 	}
 }
