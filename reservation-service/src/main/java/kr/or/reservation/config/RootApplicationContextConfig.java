@@ -15,6 +15,8 @@ public class RootApplicationContextConfig {
 
 	@Value("${file.baseDir}")
 	private String fileBaseDir;
+	
+	
 
 	@Bean
 	public String fileBaseDir() {

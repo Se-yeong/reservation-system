@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import intercepter.LoginCheckInterceptor;
 import kr.or.reservation.common.AuthUserWebArgumentResolver;
 
 
@@ -51,6 +52,13 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
         argumentResolvers.add(new AuthUserWebArgumentResolver());
 
     }
+    
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginCheckInterceptor());
+        super.addInterceptors(registry);
+    }
+
 
 
 
