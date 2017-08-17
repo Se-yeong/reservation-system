@@ -15,6 +15,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import kr.or.reservation.common.AuthUserWebArgumentResolver;
+
 
 
 // config 설정들을 얘들이 갖고 있음. 
@@ -43,6 +45,12 @@ public class ServletContextConfig extends WebMvcConfigurerAdapter {
 		multipartResolver.setMaxUploadSize(10485760);
 		return multipartResolver;
 	}
+	
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        argumentResolvers.add(new AuthUserWebArgumentResolver());
+
+    }
 
 
 

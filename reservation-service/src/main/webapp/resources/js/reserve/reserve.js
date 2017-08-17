@@ -16,7 +16,6 @@ requirejs.config({
 
 define(["jquery","ticket","enrollment","terms"], function($,Ticket,Enrollment,Terms) {
 	var enrollment = new Enrollment($(".section_booking_form"));
-	// preservator 부분 terms 로 분리할까 ? 
 	
 	var ticketList = $(".qty").map(function(i,v){
 		var ticket = new Ticket($(v),$(v).data("type"));
@@ -26,8 +25,6 @@ define(["jquery","ticket","enrollment","terms"], function($,Ticket,Enrollment,Te
 	
 	var terms = new Terms();
 	terms.on("send",enrollment.sendData.bind(enrollment));
-	
-	
 	
 });
 
