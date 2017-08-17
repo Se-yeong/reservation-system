@@ -22,14 +22,14 @@ define([ "jquery", "handlebars", "component", "extend2" ], function($,Handlebars
 	
 	Visual.prototype.getImagesByAjax = function(url) {
 		return $.ajax({
-			url : this.url,
+			url : url,
 			method : "GET",
 			dataType : 'json'
 		}).then(this.makeVisual.bind(this));
 	}
 
 	Visual.prototype.makeVisual = function(data) {
-		
+		console.log(data);
 		this.length = data.length;
 		
 		var images = [];
@@ -37,7 +37,7 @@ define([ "jquery", "handlebars", "component", "extend2" ], function($,Handlebars
 			images.push(v.file);
 		});
 		var result = this.template({images: images});
-		this.$root.find(".visual_img").append(result);
+		this.$root.find(".visual_img").html(result);
 	}
 	
 	Visual.prototype.getLength = function() {

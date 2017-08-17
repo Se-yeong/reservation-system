@@ -6,11 +6,13 @@ requirejs.config({
         handlebars: 'node_modules/handlebars/dist/handlebars.min',
         slider: "js/module/slider",
         visual : "js/module/visual",
-        extend2 : "js/lib/extend.function"
+        extend2 : "js/lib/extend.function",
+        comment : "js/module/comment",
+        photoviewer : "js/module/photoviewer"
     }
 });
 
-define(["jquery", "visual", "slider"], function($, Visual, Slider) {
+define(["jquery", "visual", "slider", "comment"], function($, Visual, Slider, Comment) {
 	
 	var IMAGE_SIZE = 414;
 	
@@ -19,6 +21,7 @@ define(["jquery", "visual", "slider"], function($, Visual, Slider) {
 	var slider;
 	
 	initVisual().then(initSlider);
+	initComment();
 	
 	function initVisual() {
 		var setting  = {
@@ -42,6 +45,11 @@ define(["jquery", "visual", "slider"], function($, Visual, Slider) {
 		
 		slider = new Slider(setting);
 	}
+	
+	function initComment() {
+		Comment.getCommentList(product.id, 3);
+	}
+	
 	
 
 });

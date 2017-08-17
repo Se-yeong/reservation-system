@@ -117,41 +117,26 @@
                                 <span class="join_count"><em class="green">52건</em> 등록</span>
                             </div>
                             <ul class="list_short_review">
-                                <li class="list_item">
+                            	<script type="text/handlebars" id = "comment-template">
+								{{#comment}}
+                                <li class="list_item" data-id={{id}} >
                                     <div>
                                         <div class="review_area">
-                                            <div class="thumb_area">
-                                                <a href="#" class="thumb" title="이미지 크게 보기"> <img width="90" height="90" class="img_vertical_top" src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" alt="리뷰이미지"> </a> <span class="img_count">1</span>                                                </div>
-                                            <h4 class="resoc_name">뮤지컬 로미오와 줄리엣</h4>
-                                            <p class="review">2층이어서 걱정했는데 꽤잘보여서 좋았습니다 고미오 너무 멋있었습니다 사진은 커튼콜때 찍었습니다 끝나고 퇴근길도 봐서 너무 좋았어요</p>
+                                            <div class="thumb_area {{displayOption}}" >
+                                                <a href="#" class="thumb" title="이미지 크게 보기"> <img width="90" height="90" class="img_vertical_top" src="{{firstImageSaveFileName}}" alt="리뷰이미지" > </a> 
+												<span class="img_count">1</span>                                                
+											</div>
+                                            <h4 class="resoc_name">{{productName}}</h4>
+                                            <p class="review">{{comment}}</p>
                                         </div>
                                         <div class="info_area">
-                                            <div class="review_info"> <span class="grade">4.0</span> <span class="name">dbfl****</span> <span class="date">2017.3.5. 방문</span> </div>
+                                            <div class="review_info"> <span class="grade">{{score}}</span> <span class="name">dbfl****</span> <span class="date">{{modifyDate}}	 방문</span> </div>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="list_item">
-                                    <div>
-                                        <div class="review_area no_img">
-                                            <h4 class="resoc_name">뮤지컬 로미오와 줄리엣</h4>
-                                            <p class="review">너무 재밌게봤구요~<br>마지막공연 후 뒷풀이도 잘봤습니다</p>
-                                        </div>
-                                        <div class="info_area">
-                                            <div class="review_info"> <span class="grade">5.0</span> <span class="name">yyck****</span> <span class="date">2017.3.5. 방문</span> </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list_item">
-                                    <div>
-                                        <div class="review_area no_img">
-                                            <h4 class="resoc_name">뮤지컬 로미오와 줄리엣</h4>
-                                            <p class="review">좋은 공연이었습니다. <br>머큐쇼역활 하신분의 열창이 기억에 남는 반면에,,, 로미오는 별로 기억에 남지 않네요..</p>
-                                        </div>
-                                        <div class="info_area">
-                                            <div class="review_info"> <span class="grade">4.0</span> <span class="name">xero****</span> <span class="date">2017.3.4. 방문</span> </div>
-                                        </div>
-                                    </div>
-                                </li>
+								{{/comment}}
+								</script>
+                                
                             </ul>
                         </div>
                         <p class="guide"> <i class="spr_book2 ico_bell"></i> <span>네이버 예약을 통해 실제 방문한 이용자가 남긴 평가입니다.</span> </p>
@@ -239,7 +224,55 @@
             <span class="copyright">© NAVER Corp.</span>
         </div>
     </footer>
-    <div id="photoviewer"></div>
+    
+    <div id="photoviewer" style="display:none; position:fixed; top:0">
+    	
+        <div class="group_visual" style="position:absolute;">
+        	<div class="photoviewer_closer" style="position: absolute; right:0; top:0; width:40px; height:40px; color:white; z-index:10;">close</div>
+	        <div class="pagination">
+	            <div class="bg_pagination">
+	            </div>
+	            <div class="figure_pagination">
+	                <span class="num">1</span>
+	                <span class="num off">/ <span>3</span></span>
+	            </div>
+	        </div>
+            <div>
+                <div class="container_visual" style="width: 414px;">
+                    <ul class="visual_img">
+                    	<script type="text/handlebars" id="photoviewer-image-template">
+									{{#images}}
+                                    <li class="item" style="width: 414px;" data-id="{{id}}"> <img alt="{{fileName}}" class="img_thumb" src="{{saveFileName}}"> 
+                                    	<span class="img_bg"></span>
+                                        <div class="visual_txt">
+                                            <div class="visual_txt_inn">
+                                                <h2 class="visual_txt_tit"> <span>${product.name}</span> </h2>
+                                                <p class="visual_txt_dsc"></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {{/images}}
+						</script>
+                    </ul>
+                </div>
+                <div class="prev">
+                    <div class="prev_inn">
+                        <a href="#" class="btn_prev" title="이전">
+                            <!-- [D] 첫 이미지 이면 off 클래스 추가 -->
+                            <i class="spr_book2 ico_arr6_lt off"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="nxt">
+                    <div class="nxt_inn">
+                        <a href="#" class="btn_nxt" title="다음">
+                            <i class="spr_book2 ico_arr6_rt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <script>
     	function getProductByEl() {

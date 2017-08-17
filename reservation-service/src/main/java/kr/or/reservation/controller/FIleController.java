@@ -15,10 +15,9 @@ public class FIleController {
 
 	@GetMapping
 	public void downloadFile(@RequestParam String fileName, HttpServletResponse response) {
-		System.out.println("download: " +fileName);
         try{
         	FileIO.readFile(fileName, response.getOutputStream());
-        }catch(Exception ex){
+        } catch(Exception ex){
             throw new RuntimeException(ex);
         }
         

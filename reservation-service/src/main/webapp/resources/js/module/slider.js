@@ -37,7 +37,8 @@ define(["jquery", "component"], function($, Component){
 	}
 	
 	
-	Slider.prototype.goLeft = function() {
+	Slider.prototype.goLeft = function(e) {
+		e.preventDefault();
 		if(this.position <= 1){
 			if(!this.endFlag){
 				this.position = this.length +1;
@@ -49,7 +50,8 @@ define(["jquery", "component"], function($, Component){
 		}
 	}
 	
-	Slider.prototype.goRight = function() {
+	Slider.prototype.goRight = function(e) {
+		e.preventDefault();
 		if ( !(this.position === this.length && this.endFlag) ) {
 			this.position++;
 			this.move("slow");

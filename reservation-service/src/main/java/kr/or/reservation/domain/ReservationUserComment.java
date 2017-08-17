@@ -14,6 +14,7 @@ public class ReservationUserComment {
 	private String comment;
 	private Timestamp createDate;
 	private Timestamp modifyDate;
+	private Integer imageCount;
 	private String firstImageSaveFileName;
 
 	public long getId() {
@@ -72,6 +73,14 @@ public class ReservationUserComment {
 		this.modifyDate = modifyDate;
 	}
 
+	public Integer getImage_count() {
+		return imageCount;
+	}
+
+	public void setImage_count(Integer imageCount) {
+		this.imageCount = imageCount;
+	}
+
 	public String getFirstImageSaveFileName() {
 		return firstImageSaveFileName;
 	}
@@ -82,7 +91,7 @@ public class ReservationUserComment {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, new ToStringStyleCustom() );
+		return ToStringBuilder.reflectionToString(this, new ToStringStyleCustom());
 	}
-	
+
 }
