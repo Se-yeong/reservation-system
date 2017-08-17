@@ -34,7 +34,7 @@
                 <div class="group_visual">
                     <div class="container_visual" style="width: 414px;">
                         <ul class="visual_img">
-                            <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="/download/file?filename='${product.productImage[0].file.saveFileName}'"> <span class="img_bg"></span>
+                            <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="${product.firstImageSaveFileName}"> <span class="img_bg"></span>
                                 <div class="preview_txt">
                                     <h2 class="preview_txt_tit">${product.name}</h2> <em class="preview_txt_dsc">₩ ${product.productPrices[fn:length(product.productPrices)-1].price } ~ </em><em class="preview_txt_dsc">
                                      	<fmt:formatDate value= "${product.displayInfo.displayStart}" pattern="yyyy.MM.dd (E)"/>
@@ -185,6 +185,7 @@
     </footer>
 </body>
 
+<!--  비동기로 가져옴. 그때마다 필요한 파일들을 가져옴 .  -->
 <script data-main="/resources/js/reserve/reserve" src="/resources/node_modules/requirejs/require.js"></script>
 
 </html>
