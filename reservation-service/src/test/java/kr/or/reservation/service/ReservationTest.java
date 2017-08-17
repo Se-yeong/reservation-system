@@ -2,6 +2,7 @@ package kr.or.reservation.service;
 
 import java.sql.Timestamp;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class ReservationTest {
 	
 	@Autowired
 	ReservationInfoDao dao;
+	Logger log = Logger.getLogger(this.getClass());
 
 	@Test
 	public void insertData() {
@@ -35,6 +37,5 @@ public class ReservationTest {
 		reservationInfo.setTotalPrice(10000);
 		
 		long id = dao.insert(reservationInfo);
-		Assert.assertNotNull(id);
 	}
 }

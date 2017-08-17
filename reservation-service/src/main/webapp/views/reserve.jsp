@@ -83,7 +83,7 @@
                 <div class="section_booking_ticket">
                     <div class="ticket_body">
                     	<c:forEach items="${product.productPrices}" var="price">
-                    	<div class="qty">
+                    	<div class="qty" data-type = "${price.priceType}">
                             <div class="count_control">
                                 <!-- [D] 수량이 최소 값이 일때 ico_minus3, count_control_input에 disabled 각각 추가, 수량이 최대 값일 때는 ico_plus3에 disabled 추가 -->
                                 <div class="clearfix">
@@ -184,7 +184,11 @@
         </div>
     </footer>
 </body>
-
+<script>
+	function getProductId(){
+		return ${product.id};
+	}
+</script>
 <!--  비동기로 가져옴. 그때마다 필요한 파일들을 가져옴 .  -->
 <script data-main="/resources/js/reserve/reserve" src="/resources/node_modules/requirejs/require.js"></script>
 

@@ -6,7 +6,7 @@ define([ "jquery", "component", "extend" ], function($, Component, extend) {
 		init : function() {
 			$(".agreement").on("click", ".btn_agreement", this.viewTermToggle);
 			$("#chk3").on("click", this.agreeTermToggle);
-			$(".bk_btn_wrap").on("click", this.vaildateInput);
+			$(".bk_btn_wrap").on("click", this.vaildateInput.bind(this));
 		},
 		agreeTermToggle : function() {
 			$(".bk_btn_wrap").toggleClass("disable");
@@ -39,7 +39,7 @@ define([ "jquery", "component", "extend" ], function($, Component, extend) {
 				alert("티켓을 추가해 주세요.")
 				return;
 			}
-			this.trigger("sendData");
+			this.trigger("send",{name : name , tel : tel , email : email , amount : parseInt(count)});
 		}
 	});
 

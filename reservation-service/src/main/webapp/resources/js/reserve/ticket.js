@@ -2,13 +2,13 @@ define(["jquery", "component","extend"],function($,Component,extend){
 
 	
 	var ticket = extend(Component,{	
-		init : function($root,max){
+		init : function($root,type){
 			this.$root = $root;
-			this.max = max || 10;
+			this.max =  10;
 			this.count = 0;
 			this.$count = this.$root.find("[type = tel]");
-			
-			// data- 로 진행 할 것. 
+			this.type =  type;
+				
 			this.price = parseInt(this.$root.find("span.price").text().replace( "," , "" ));
 			this.priceSum = 0;
 			this.$priceSum = this.$root.find("span.total_price");
@@ -34,9 +34,11 @@ define(["jquery", "component","extend"],function($,Component,extend){
 			
 		},
 		updateText : function(state){
+			var ticketData;
 			this.$count.val(this.count);
 			this.updateSum();
-			this.trigger("changeAmount",{state : state});
+			ticketData = {state : state, type : this.type ,  count : this.count , price : this.price * this.count};
+			this.trigger("changeAmount",ticketData);
 		},
 		updateBtnState : function(point,$btn,$otherBtn,state){
 			if(this.count === point){

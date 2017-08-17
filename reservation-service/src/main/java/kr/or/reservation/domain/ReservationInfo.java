@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class ReservationInfo {
-	private long id;
+	//private long id;
 	private long productId;
 	private long userId;
 	private int generalTicketCount;
@@ -23,13 +23,13 @@ public class ReservationInfo {
 
 	private Product product;
 
-	public long getId() {
+	/*public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
-	}
+	}*/
 
 	public long getProductId() {
 		return productId;

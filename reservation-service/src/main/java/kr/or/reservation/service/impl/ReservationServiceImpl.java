@@ -1,5 +1,7 @@
 package kr.or.reservation.service.impl;
 
+import java.sql.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,9 @@ public class ReservationServiceImpl implements ReservationService {
 		if (reservationInfo == null) {
 			return null;
 		}
+		// default값으로 넣어둠. 
+		reservationInfo.setReservationDate(new Timestamp(System.currentTimeMillis()));
+		reservationInfo.setUserId(1);
 		return reservaioninfoDao.insert(reservationInfo);
 	}
 
