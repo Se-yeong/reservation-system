@@ -48,5 +48,11 @@ public class CategoryTest {
 		long index = categoryService.delete(key);
 		Assert.assertThat(index, is((long)1));
 	}
+	
+	@Test
+	public void vaildTest() {
+		Category category = new Category();
+		key = categoryService.insert(category);
+	}
 
 }

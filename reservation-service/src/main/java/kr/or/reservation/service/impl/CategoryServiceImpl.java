@@ -26,9 +26,9 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Long insert(Category category) {
+	public Long insert( Category category) {
 		// TODO Auto-generated method stub
-		if (category == null || category.getName() == null || "".equals(category.getName())) {
+		if (category == null) {
 			return null;
 		}
 		return categoryDao.insert(category);
