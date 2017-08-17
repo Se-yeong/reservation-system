@@ -1,10 +1,13 @@
 package kr.or.reservation.domain;
 
+import javax.validation.constraints.NotNull;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class Category {
 	private long id;
+	@NotNull
 	private String name;
 
 	public long getId() {

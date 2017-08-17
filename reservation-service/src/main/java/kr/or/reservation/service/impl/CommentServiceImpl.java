@@ -2,6 +2,8 @@ package kr.or.reservation.service.impl;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +32,7 @@ public class CommentServiceImpl implements CommentService {
 		if (id <= 0) {
 			return null;
 		}
-		
+
 		return dao.selectImageList(id);
 	}
 }
