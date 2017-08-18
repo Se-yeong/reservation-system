@@ -18,12 +18,12 @@ public class FileIO {
 
 	@Autowired
 	public FileIO(String fileBaseDir) {
-		this.FILE_BASE_DIR = fileBaseDir;
+		FILE_BASE_DIR = fileBaseDir;
 	}
 
 	// Static을 지우고 DI
 	public static void readFile(String fileName, OutputStream outputStream) {
-		String saveFileName = fileBaseDir + fileName;
+		String saveFileName = FILE_BASE_DIR + fileName;
 
 		java.io.File readFile = new java.io.File(saveFileName);
 		

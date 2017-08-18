@@ -43,12 +43,6 @@ public class LoginController {
 	}
 	
 	
-	public String loginCallback(HttpServletRequest request) {
-		
-		return "login";
-	}
-	
-	
 	public ModelAndView login(HttpServletRequest request) {
 		if( isLoggedIn(request) ) {
 			return new ModelAndView("redirect:/myreservation");

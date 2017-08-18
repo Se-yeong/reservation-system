@@ -9,5 +9,5 @@ public interface UserDao {
 
 	public long update(User user);
 
-	public User selectOne(long snsId);
+	public User selectOneBySnsId(long snsId);
 }

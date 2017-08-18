@@ -18,7 +18,6 @@ public class User {
 	private Timestamp createDate;
 	private Timestamp modifyDate;
 
-	private ReservationUserCommentImage reservationUserCommentImage;
 
 	public long getId() {
 		return id;
@@ -108,13 +107,6 @@ public class User {
 		this.modifyDate = modifyDate;
 	}
 
-	public ReservationUserCommentImage getReservationUserCommentImage() {
-		return reservationUserCommentImage;
-	}
-
-	public void setReservationUserCommentImage(ReservationUserCommentImage reservationUserCommentImage) {
-		this.reservationUserCommentImage = reservationUserCommentImage;
-	}
 
 	@Override
 	public String toString() {
