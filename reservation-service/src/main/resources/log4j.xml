@@ -14,7 +14,7 @@
   <!--  날짜별 로그 -->  
     <appender name="database" class="org.apache.log4j.DailyRollingFileAppender">  
         <!-- 이것은 날짜별로  로그를 남김. 파일명.확장자.DatePattern으로 정의 함-->  
-        <param name="file" value="database.log"/>  
+        <param name="file" value="log/database.log"/>  
         <param name="Append" value="true"/>  
         <param name="DatePattern" value="'.'yyyy-MM-dd" />
       <param name="ImmediateFlush" value="true" />

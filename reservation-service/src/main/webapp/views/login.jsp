@@ -10,15 +10,7 @@
 </head>
 <body>
   <!-- 네이버아이디로로그인 버튼 노출 영역 -->
-  <div id="naver_id_login"></div>
+  <a href="${apiURL}"><img height="100" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
   <!-- //네이버아이디로로그인 버튼 노출 영역 -->
-  <script type="text/javascript">
-  	var naver_id_login = new naver_id_login("Stl7ORdgyu0_h9RK7br7", "/logincallback");
-  	var state = naver_id_login.getUniqState();
-  	naver_id_login.setButton("white", 2, 80);
-  	naver_id_login.setDomain("localhost:8080");
-  	naver_id_login.setState(state);
-  	naver_id_login.setPopup();
-  	naver_id_login.init_naver_id_login();
-  </script>
+
 </html>

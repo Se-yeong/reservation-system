@@ -1,5 +1,7 @@
 package intercepter;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,7 +12,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
-        String naverLoginUser = (String) session.getAttribute("loginUser");
+        Map<String, Object> naverLoginUser = (Map<String, Object>) session.getAttribute("loginUser");
         String path = request.getRequestURI();
 
         System.out.println("path : " + path);

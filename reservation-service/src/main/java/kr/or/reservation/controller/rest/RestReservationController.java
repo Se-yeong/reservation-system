@@ -8,12 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.reservation.domain.ReservationInfo;
 import kr.or.reservation.service.ReservationService;
 
 @RestController
+@RequestMapping("/api/reservation")
 public class RestReservationController {
 
 	Logger log = Logger.getLogger(this.getClass());
@@ -24,7 +26,7 @@ public class RestReservationController {
 		this.reservationService = reservationService;
 	}
 
-	@PostMapping("/reservation")
+	@PostMapping
 	public long  insert(Model model, @ModelAttribute ReservationInfo info) {
 		log.info("here ::" + info.toString());
 		return reservationService.insert(info);
