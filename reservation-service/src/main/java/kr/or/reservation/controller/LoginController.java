@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -21,10 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.or.reservation.domain.User;
-import kr.or.reservation.service.impl.LoginService;
 
-@Controller
 @RequestMapping
 public class LoginController {
 	
@@ -196,7 +192,7 @@ public class LoginController {
 	
 	
 	public void updateUser(Map<String, Object> userInfo) {
-		String nickname = (String) userInfo.get("nickname");
+/*		String nickname = (String) userInfo.get("nickname");
 		String profileImage = (String) userInfo.get("profile_image");
 		String email = (String) userInfo.get("email");
 		Integer naverId = Integer.parseInt( (String) userInfo.get("id") );
@@ -219,7 +215,7 @@ public class LoginController {
 		} else {
 			userService.add(user);
 			//System.out.println("add");
-		}
+		}*/
 		
 	}
 	

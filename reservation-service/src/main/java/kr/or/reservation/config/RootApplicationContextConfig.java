@@ -1,5 +1,6 @@
 package kr.or.reservation.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +15,7 @@ import org.springframework.context.annotation.PropertySource;
 public class RootApplicationContextConfig {
 
 	@Value("${file.baseDir}")
-	private String FILE_BASE_DIR;
+	private String fileBaseDir;
 	
 	@Value("${naver.client.id}")
 	private String NAVER_CLIENT_ID;
@@ -23,8 +24,9 @@ public class RootApplicationContextConfig {
 	private String NAVER_CLIENT_SECRET;
 
 	@Bean
+	@Qualifier("fileBaseDir")
 	public String getFileBaseDir() {
-		return FILE_BASE_DIR;
+		return fileBaseDir;
 	}
 	
 	@Bean

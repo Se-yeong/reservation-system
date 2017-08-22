@@ -6,6 +6,7 @@ import java.io.OutputStream;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
@@ -17,7 +18,8 @@ public class FileIO {
 	static Logger log = Logger.getLogger(FileIO.class);
 
 	@Autowired
-	public FileIO(String fileBaseDir) {
+	@Qualifier("fileBaseDir")
+	public void setFileBaseDir(String fileBaseDir) {
 		FILE_BASE_DIR = fileBaseDir;
 	}
 
