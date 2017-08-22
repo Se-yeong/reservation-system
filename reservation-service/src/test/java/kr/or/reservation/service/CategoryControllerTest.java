@@ -65,12 +65,13 @@ public class CategoryControllerTest {
 		verify(mockedCategoryService).selectList();
 	}
 
-	// Controller 통합 Test
+	// 이걸 뭐라 부를까요 ~~ ? 
 	@Test
 	public void testCreate() throws Exception {
 		this.mockMvc
 				.perform(get("/api/category").contentType(contentType))
-						.andExpect(status().isOk());
+						.andExpect(status().isOk())
+						.andExpect();
 	}
 
 }
