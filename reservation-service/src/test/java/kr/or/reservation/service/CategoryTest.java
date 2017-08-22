@@ -1,58 +1,68 @@
 package kr.or.reservation.service;
 
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
-import static org.hamcrest.CoreMatchers.*;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.*;
 
-import java.util.List;
-
-import kr.or.reservation.config.RootApplicationContextConfig;
+import kr.or.reservation.dao.CategoryDao;
 import kr.or.reservation.domain.Category;
+import kr.or.reservation.service.impl.CategoryServiceImpl;
 
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = RootApplicationContextConfig.class)
-@Transactional
+@RunWith(MockitoJUnitRunner.class)
 public class CategoryTest {
 
-	@Autowired
-	CategoryService categoryService;
+	/*
+	 * @Autowired CategoryService categoryService;
+	 */
+	// controller / dao  각 계층 테스트 할수 잇는 다른 방법 . 
+	@Mock
+	CategoryDao categoryDao;
 
-	private long key;
+	@Test
+	public void testInsert() {
+		// given
+		CategoryService categoryService = new CategoryServiceImpl();
+		categoryService.setCategoryDao(categoryDao);
 
-	@Before
-	public void insert() {
+		// when
 		Category category = new Category();
 		category.setName("영화");
-		key = categoryService.insert(category);
+		categoryService.insert(category);
+
+		// then
+		verify(categoryDao).insert(category);
 	}
 
 	@Test
-	public void select() {
-		List<Category> categories = categoryService.selectList();
-		int last = categories.size() - 1;
-		long selectKey = categories.get(last).getId();
-		Assert.assertThat(selectKey, is(key));
+	public void testSelect() {
+		// given
+		CategoryService categoryService = new CategoryServiceImpl();
+		categoryService.setCategoryDao(categoryDao);
+
+		// when
+		categoryService.selectList();
+
+		// then
+		verify(categoryDao).selectList();
 	}
 
 	@Test
-	public void delete() {
-		long index = categoryService.delete(key);
-		Assert.assertThat(index, is((long)1));
-	}
-	
-	@Test
-	public void vaildTest() {
-		Category category = new Category();
-		key = categoryService.insert(category);
+	public void testDelete() {
+		// given
+		long key = 1;
+		CategoryService categoryService = new CategoryServiceImpl();
+		categoryService.setCategoryDao(categoryDao);
+
+		// when
+		categoryService.delete(key);
+
+		// then
+		verify(categoryDao).delete(key);
 	}
 
 }

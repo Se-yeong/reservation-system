@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import kr.or.reservation.dao.CategoryDao;
 import kr.or.reservation.domain.Category;
 
 public interface CategoryService {
+	
+	public void setCategoryDao(CategoryDao categoryDao);
 
 	public List<Category> selectList();
 
