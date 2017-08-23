@@ -9,7 +9,7 @@ import kr.or.reservation.common.ToStringStyleCustom;
 
 public class Product {
 	private long id;
-	private String categoryId;
+	private long categoryId;
 	private String name;
 	private String description;
 	private Timestamp salesStart;
@@ -33,11 +33,11 @@ public class Product {
 		this.id = id;
 	}
 
-	public String getCategoryId() {
+	public long getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(String categoryId) {
+	public void setCategoryId(long categoryId) {
 		this.categoryId = categoryId;
 	}
 

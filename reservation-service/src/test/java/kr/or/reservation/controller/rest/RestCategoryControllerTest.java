@@ -41,7 +41,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = { RootApplicationContextConfig.class, ServletContextConfig.class })
-public class CategoryControllerTest {
+public class RestCategoryControllerTest {
 
 	private MockMvc mockMvc;
 

@@ -98,7 +98,7 @@ public class ProductDaoImpl implements ProductDao {
 		public Product mapProduct(ResultSet rs) throws SQLException {
 			Product product = new Product();
 			product.setId(rs.getLong("id"));
-			product.setCategoryId(rs.getString("category_id"));
+			product.setCategoryId(rs.getLong("category_id"));
 			product.setName(rs.getString("name"));
 			product.setDescription(rs.getString("description"));
 			product.setSalesStart(rs.getTimestamp("sales_start"));

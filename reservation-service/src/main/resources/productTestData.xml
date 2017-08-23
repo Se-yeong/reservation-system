@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<Person id="1" category_id="1" name="name1" description="desc1" content="content1" 
+		observation_time="observation_time1" place_name="place_name1" price_type="price_type1" price="price1"/>
+		
+	<Person id="1" category_id="1" name="name1" description="desc1" content="content1" 
+		observation_time="observation_time1" place_name="place_name1" price_type="price_type2" price="price2"/>
+
+</dataset>
