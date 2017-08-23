@@ -1,6 +1,7 @@
 package kr.or.reservation.controller.rest;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -31,9 +32,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -45,28 +48,31 @@ public class CategoryControllerTest {
 	@Mock
 	CategoryService mockedCategoryService;
 
-	@Autowired
-	WebApplicationContext applicationContext;
-
 	RestCategoryController controller;
 
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		mockMvc = webAppContextSetup(applicationContext).build();
+		// mockMvc = webAppContextSetup(applicationContext).build();
 		controller = new RestCategoryController(mockedCategoryService);
+		mockMvc = standaloneSetup(controller).build();
 	}
 
 	@Test
 	public void shouldSelectAll() {
 		// give
-		RestCategoryController controller = new RestCategoryController(mockedCategoryService);
+		// service setup 부분을 별로의 함수 및 before 쪽에 두는게 맞을까요 ?  
+		List<Category> list = new ArrayList<>();
+		Category category = new Category().setName("names");
+		list.add(category);
+		when(mockedCategoryService.selectList()).thenReturn(list);
 
 		// when
-		controller.selectList();
+		List<Category> result = controller.selectList();
 
 		// then
 		verify(mockedCategoryService).selectList();
+		assertEquals(result.get(0), category);
 	}
 
 	@Test
@@ -89,23 +95,24 @@ public class CategoryControllerTest {
 	public void shouldDelete() {
 		// give
 		long key = 1;
-		long returnedKey = 0;
-		Category category = new Category();
-		category.setName("장르");
+		long result = 0;
 
 		// when
 		when(mockedCategoryService.delete(key)).thenReturn((long) 1);
-		returnedKey = controller.delete(key);
+		result = controller.delete(key);
 
 		// then
-		assertEquals(returnedKey, key);
+		assertEquals(result, key);
 		verify(mockedCategoryService).delete(key);
 	}
 
 	@Test
 	public void testCreate() throws Exception {
-		// service 부분 Mock을 주입 할 수없나 ?
-		mockMvc.perform(get("/api/category").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-	}
 
+		// when - then
+		mockMvc.perform(get("/api/category").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+
+		verify(mockedCategoryService).selectList();
+
+	}
 }

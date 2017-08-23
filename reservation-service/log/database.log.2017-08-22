@@ -1,0 +1,18 @@
+[INFO ] 2017-08-22 18:51:53,009 (Slf4jSpyLogDelegator.java:226) 
+ SELECT * FROM category 
+
+[INFO ] 2017-08-22 18:51:53,013 (Slf4jSpyLogDelegator.java:370) 
+ SELECT * FROM category 
+ {executed in 3 msec}
+[INFO ] 2017-08-22 18:53:31,799 (Slf4jSpyLogDelegator.java:226) 
+ SELECT * FROM category 
+
+[INFO ] 2017-08-22 18:53:31,801 (Slf4jSpyLogDelegator.java:370) 
+ SELECT * FROM category 
+ {executed in 1 msec}
+[INFO ] 2017-08-22 18:56:15,333 (Slf4jSpyLogDelegator.java:226) 
+ SELECT * FROM category 
+
+[INFO ] 2017-08-22 18:56:15,337 (Slf4jSpyLogDelegator.java:370) 
+ SELECT * FROM category 
+ {executed in 3 msec}
