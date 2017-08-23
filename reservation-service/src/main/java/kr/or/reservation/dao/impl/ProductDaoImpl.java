@@ -36,9 +36,19 @@ public class ProductDaoImpl implements ProductDao {
 
 	Logger log = Logger.getLogger(this.getClass());
 
+
+	
+	public ProductDaoImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Autowired
 	public ProductDaoImpl(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+	}
+
+	public void setJdbc(NamedParameterJdbcTemplate jdbc) {
+		this.jdbc = jdbc;
 	}
 
 	@Override
@@ -152,7 +162,7 @@ public class ProductDaoImpl implements ProductDao {
 
 			return display;
 		}
-		
+
 	}
 
 	private class ImageMapper extends ProductMapper {
@@ -163,8 +173,7 @@ public class ProductDaoImpl implements ProductDao {
 			product.setProductImage(mapImage(rs));
 			return product;
 		}
-		
-		
+
 		public List<ProductImage> mapImage(ResultSet rs) throws SQLException {
 			List<ProductImage> list = new ArrayList<ProductImage>();
 			ProductImage image = null;
@@ -223,7 +232,7 @@ public class ProductDaoImpl implements ProductDao {
 					price = new ProductPrice();
 					// price.setId(id);
 					// price.setProductId(productId);
-					price.setPriceType(PriceType.values()[rs.getInt("price_type")-1]);
+					price.setPriceType(PriceType.values()[rs.getInt("price_type") - 1]);
 					price.setPrice(rs.getLong("price"));
 					price.setDiscountRate(rs.getString("discount_rate"));
 					// price.setCreateDate(rs.getTimestamp("create_date"));
