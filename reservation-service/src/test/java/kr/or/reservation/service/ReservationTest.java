@@ -15,6 +15,8 @@ import kr.or.reservation.config.RootApplicationContextConfig;
 import kr.or.reservation.dao.ReservationInfoDao;
 import kr.or.reservation.domain.ReservationInfo;
 
+import static org.hamcrest.CoreMatchers.is;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = RootApplicationContextConfig.class)
 @Transactional

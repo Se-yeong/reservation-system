@@ -36,11 +36,7 @@ public class RestCategoryController {
 	}
 
 	@PostMapping()
-	public Long insert( @Valid @ModelAttribute Category category ,BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			log.info("valid");
-			return null;
-		}
+	public Long insert( @ModelAttribute Category category ) {
 		return service.insert(category);
 	}
 
