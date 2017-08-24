@@ -1,4 +1,4 @@
-package kr.or.reservation.dao;
+package kr.or.reservation.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +24,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 
+import junit.framework.Assert;
 import kr.or.reservation.config.RootApplicationContextConfig;
 import kr.or.reservation.config.ServletContextConfig;
 import kr.or.reservation.dao.impl.ProductDaoImpl;
@@ -32,6 +33,7 @@ import kr.or.reservation.domain.PriceType;
 import kr.or.reservation.domain.Product;
 import kr.or.reservation.domain.User;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Matchers.*;
@@ -47,18 +49,11 @@ public class ProductDaoTest {
 	@Before
 	public void setUp() throws SQLException {
 		MockitoAnnotations.initMocks(this);
-		setUpJdbc();
 		dao = new ProductDaoImpl();
 		dao.setJdbc(jdbc);
 	}
 
-	public void setUpJdbc() {
-		when(jdbc.query(anyString(), anyMap(), any(RowMapper.class))).thenReturn(new ArrayList<Product>());
-		doReturn(new Product()).when(jdbc).queryForObject(anyString(), anyMap(), any(RowMapper.class));
-		doReturn((long)1).when(jdbc).queryForObject(anyString(), anyMap(),long.class);
-		
-		
-	}
+
 
 	/*
 	 * public void setMocks() throws SQLException {
@@ -93,16 +88,20 @@ public class ProductDaoTest {
 	 * when(mockResultSet.getLong("price")).thenReturn((long) 1000); }
 	 */
 
+	// dao Test 관련해서 질문할 것.
 	@Test
 	public void shouldSelectOne() {
 		Product product;
+		RowMapper<Product> imageMapper = dao.getImageMapper();
+		Map<String, Long> params = Collections.singletonMap("id", (long)1);
+		when(jdbc.queryForObject(ProductSqls.SELECT_ONE, params, imageMapper)).thenReturn(new Product().setId(1));
 		
+		// when
 		product = dao.selectOne(1);
-	
-		verify(jdbc).queryForObject(anyString(), anyMap(), any(RowMapper.class));
 		
-		System.out.println(dao.selectOne(1));
-
+		//then
+		verify(jdbc).queryForObject(ProductSqls.SELECT_ONE, params, imageMapper);
+		assertThat(product.getId(), is((long)1));
 	}
 
 	@Test

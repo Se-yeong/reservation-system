@@ -38,6 +38,11 @@ public class ProductDaoImpl implements ProductDao {
 
 
 	
+	public RowMapper<Product> getImageMapper() {
+		return imageMapper;
+	}
+
+
 	public ProductDaoImpl() {
 		// TODO Auto-generated constructor stub
 	}
@@ -165,7 +170,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	}
 
-	private class ImageMapper extends ProductMapper {
+	protected class ImageMapper extends ProductMapper {
 
 		@Override
 		public Product mapRow(ResultSet rs, int rowNum) throws SQLException {

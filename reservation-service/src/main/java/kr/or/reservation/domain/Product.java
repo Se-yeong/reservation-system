@@ -29,8 +29,9 @@ public class Product {
 		return id;
 	}
 
-	public void setId(long id) {
+	public Product setId(long id) {
 		this.id = id;
+		return this;
 	}
 
 	public long getCategoryId() {
