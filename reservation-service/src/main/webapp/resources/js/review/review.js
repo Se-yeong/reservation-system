@@ -17,7 +17,7 @@ define(["jquery", "comment"], function($, Comment) {
 	initComment();
 	
 	function initComment() {
-		Comment.getCommentList(product.id, 10);
+		Comment.getCommentList(product.id, 15);
 	}
 	
 });

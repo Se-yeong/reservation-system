@@ -1,18 +1,18 @@
 package intercepter;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import kr.or.reservation.domain.User;
+
 public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
-        Map<String, Object> naverLoginUser = (Map<String, Object>) session.getAttribute("loginUser");
+        User naverLoginUser = (User) session.getAttribute("loginUser");
         String path = request.getRequestURI();
 
         System.out.println("path : " + path);

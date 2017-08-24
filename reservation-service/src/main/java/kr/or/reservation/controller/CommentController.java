@@ -15,7 +15,7 @@ import kr.or.reservation.service.ReservationService;
 public class CommentController {
 	private CommentService commentService;
 	private ProductService productService;
-	private ReservationService reservationService;
+
 	
 	@Autowired
 	public void setCommentService (CommentService commentService) {
@@ -27,11 +27,6 @@ public class CommentController {
 		this.productService = productService;
 	}
 	
-	@Autowired
-	public void setReservationService (ReservationService reservationService) {
-		this.reservationService = reservationService;
-	}
-	
 	@GetMapping("/product/{productId}/review")
 	public String getProduct(Model model, @PathVariable int productId) {
 		Product product = productService.selectOne(productId);
@@ -40,10 +35,5 @@ public class CommentController {
 		
 		return "review";
 	}
-	
-	@GetMapping("/reservation/{reservationId}/review-write")
-	public String getReservation(Model model, @PathVariable long reservationId) {
-		model.addAttribute("reservationInfo", reservationService.selectOne(reservationId));
-		return "reviewWrite";
-	}
+
 }

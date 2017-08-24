@@ -1,15 +1,13 @@
-package kr.or.reservation.dao;
-
-import java.util.List;
+package kr.or.reservation.service;
 
 import kr.or.reservation.domain.User;
 
-public interface UserDao {
+public interface UserService {
 	public long insert(User user);
 
 	public long update(User user);
 
 	public User selectOneBySnsId(String snsId);
 	
-	public Integer existByNaverId(String naverId);
+	public Boolean existByNaverId(String naverId);
 }

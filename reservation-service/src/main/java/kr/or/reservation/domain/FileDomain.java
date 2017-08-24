@@ -7,12 +7,12 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import kr.or.reservation.common.ToStringStyleCustom;
 
-public class File {
+public class FileDomain {
 	private long id;
 	private long userId;
 	private String fileName;
 	private String saveFileName;
-	private int fileLength;
+	private long fileLength;
 	private String contentType;
 	private int deleteFlag;
 	private Timestamp createDate;
@@ -50,11 +50,11 @@ public class File {
 		this.saveFileName = saveFileName;
 	}
 
-	public int getFileLength() {
+	public long getFileLength() {
 		return fileLength;
 	}
 
-	public void setFileLength(int fileLength) {
+	public void setFileLength(long fileLength) {
 		this.fileLength = fileLength;
 	}
 
@@ -92,7 +92,7 @@ public class File {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, new ToStringStyleCustom(), true);
+		return ToStringBuilder.reflectionToString(this, new ToStringStyleCustom());
 	}
 
 }

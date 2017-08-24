@@ -23,11 +23,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.or.reservation.domain.User;
+import kr.or.reservation.service.UserService;
+
 @Controller
 @RequestMapping
 public class LoginController {
 	Logger log = Logger.getLogger(this.getClass());
 	private RestTemplate restTemplate;
+	private UserService userService;
 
 	private String NAVER_CLIENT_ID;
 	private String NAVER_CLIENT_SECRET;
@@ -40,20 +44,23 @@ public class LoginController {
 	public LoginController(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
-	
+
+	@Autowired
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
 	@Autowired
 	@Qualifier("NAVER_CLIENT_ID")
 	public void setNAVER_CLIENT_ID(String NAVER_CLIENT_ID) {
 		this.NAVER_CLIENT_ID = NAVER_CLIENT_ID;
 	}
-	
+
 	@Autowired
 	@Qualifier("NAVER_CLIENT_SECRET")
 	public void setNAVER_CLIENT_SECRET(String NAVER_CLIENT_SECRET) {
 		this.NAVER_CLIENT_SECRET = NAVER_CLIENT_SECRET;
 	}
-	
-
 
 	@GetMapping("/login")
 	public ModelAndView login(HttpServletRequest request) {
@@ -122,11 +129,10 @@ public class LoginController {
 			mv.addObject("userResponse", userResponse);
 
 			Map<String, Object> loginUser = (Map<String, Object>) userResponse.get("response");
-
-			System.out.println (loginUser);
-
-			updateUser(loginUser);
-			request.getSession().setAttribute("loginUser", loginUser);
+			
+			User user = updateUser(loginUser);
+			System.out.println(loginUser);
+			request.getSession().setAttribute("loginUser", user);
 
 			return mv;
 
@@ -154,7 +160,7 @@ public class LoginController {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		Map<String, Object> response = doGet(apiURL, headers);
-		
+
 		return response;
 	}
 
@@ -194,24 +200,30 @@ public class LoginController {
 		return response;
 	}
 
-	public void updateUser(Map<String, Object> userInfo) {
-		/*
-		 * String nickname = (String) userInfo.get("nickname"); String profileImage =
-		 * (String) userInfo.get("profile_image"); String email = (String)
-		 * userInfo.get("email"); Integer naverId = Integer.parseInt( (String)
-		 * userInfo.get("id") );
-		 * 
-		 * User user = new User(); if(nickname != null) { user.setNickname(nickname); }
-		 * if(email != null) { user.setEmail(email); } if(naverId != null) {
-		 * user.setNaverId(naverId); }
-		 * 
-		 * //System.out.println(user); if( userService.existByNaverId(naverId) ) {
-		 * userService.updateByNaverId(user); //System.out.println("update"); } else {
-		 * userService.add(user); //System.out.println("add"); }
-		 */
-
-	}
+	public User updateUser(Map<String, Object> userInfo) {
 	
+		String nickname = (String) userInfo.get("nickname"); 
+		String profileImage = (String) userInfo.get("profile_image"); 
+		String email = (String) userInfo.get("email"); 
+		String naverId = (String) userInfo.get("id");
+
+		User user = new User(); 
+		if(nickname != null) { user.setNickname(nickname); }
+		if(email != null) { user.setEmail(email); } 
+		if(naverId != null) {user.setSnsId(naverId.toString()); }
+		
+		System.out.println(user);
+		if( userService.existByNaverId(naverId) ) {
+			userService.update(user);
+			
+			} else {
+			userService.insert(user);
+		}
+		
+		return userService.selectOneBySnsId(naverId);
+		
+	}
+
 	@GetMapping("/logout")
 	public ModelAndView logout(HttpServletRequest request) {
 		request.getSession().removeAttribute("loginUser");

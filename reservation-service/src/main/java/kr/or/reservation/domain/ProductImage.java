@@ -11,7 +11,7 @@ public class ProductImage {
 	private long fileId;
 	private int type;
 
-	private File file;
+	private FileDomain file;
 
 	public long getId() {
 		return id;
@@ -45,11 +45,11 @@ public class ProductImage {
 		this.type = type;
 	}
 
-	public File getFile() {
+	public FileDomain getFile() {
 		return file;
 	}
 
-	public void setFile(File file) {
+	public void setFile(FileDomain file) {
 		this.file = file;
 	}
 	

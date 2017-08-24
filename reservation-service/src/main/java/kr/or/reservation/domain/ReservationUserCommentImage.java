@@ -8,7 +8,7 @@ public class ReservationUserCommentImage {
 	private long reservationUserCommentId;
 	private long fileId;
 
-	private File file;
+	private FileDomain file;
 
 	public long getId() {
 		return id;
@@ -34,11 +34,11 @@ public class ReservationUserCommentImage {
 		this.fileId = fileId;
 	}
 
-	public File getFile() {
+	public FileDomain getFile() {
 		return file;
 	}
 
-	public void setFile(File file) {
+	public void setFile(FileDomain file) {
 		this.file = file;
 	}
 

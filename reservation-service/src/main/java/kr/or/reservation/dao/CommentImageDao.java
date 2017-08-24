@@ -6,6 +6,7 @@ import kr.or.reservation.domain.ReservationUserCommentImage;
 
 public interface CommentImageDao {
 	public long insert(ReservationUserCommentImage reservationUserCommentImage);
+	public boolean insertArray(ReservationUserCommentImage[] commentImages);
 
 	public List<ReservationUserCommentImage> selectList(long commentId);
 }

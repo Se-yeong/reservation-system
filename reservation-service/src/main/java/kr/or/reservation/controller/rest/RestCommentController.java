@@ -5,12 +5,15 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.reservation.common.Convert;
+import kr.or.reservation.domain.Category;
 import kr.or.reservation.domain.ReservationUserComment;
 import kr.or.reservation.domain.ReservationUserCommentImage;
 import kr.or.reservation.service.CommentService;
@@ -35,6 +38,12 @@ public class RestCommentController {
 		amount = Convert.convertNulltoZero(amount);
 		return service.selectList(productId, start, amount);
 	}
+	
+	@PostMapping()
+	public Long insert( @ModelAttribute ReservationUserComment comment ) {
+		return service.insert(comment);
+	}
+	
 	
 	@GetMapping("{id}/image")
 	public List<ReservationUserCommentImage> selectImageList(@PathVariable long id) {

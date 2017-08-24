@@ -10,5 +10,5 @@ public interface CommentDao {
 
 	public List<ReservationUserComment> selectList(long productId, int start, int amount);
 	
-	public List<ReservationUserCommentImage> selectImageList(long id);
+	public int updatefirstFileName(long commentId, String firstImageSaveFileName, long imageCount);
 }

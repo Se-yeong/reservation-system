@@ -72,7 +72,7 @@ define(["jquery", "component", "rating", "writeContents"], function($, Component
 		}
 
 
-		var url = "/img";
+		var url = "/api/file/image";
 
 		$.ajax({
 	        url: url,
@@ -81,14 +81,11 @@ define(["jquery", "component", "rating", "writeContents"], function($, Component
 	            var myXhr = $.ajaxSettings.xhr();
 	            return myXhr;
 	        },
-	        success: function (data) {
-	            alert("Data Uploaded: "+data);
-	        },
 	        data: formData,
 	        cache: false,
 	        contentType: false,
 	        processData: false
-	    }).always(function(){
+	    }).done(function(){
 	    	location.href =  "/product/"+getReservationInfo().productId+"/review";
 	    });
 	}

@@ -1,6 +1,7 @@
 package kr.or.reservation.dao.impl;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -16,9 +17,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import kr.or.reservation.dao.UserDao;
-import kr.or.reservation.dao.sqls.CategorySqls;
-import kr.or.reservation.dao.sqls.ProductSqls;
-import kr.or.reservation.domain.Category;
+import kr.or.reservation.dao.sqls.UserSqls;
 import kr.or.reservation.domain.User;
 
 @Repository
@@ -34,19 +33,25 @@ public class UserDaoImpl implements UserDao {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("users").usingGeneratedKeyColumns("id");
 	}
-
+	@Override
 	public long insert(User user) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(user);
 		return insertAction.executeAndReturnKey(params).longValue();
 	}
-
+	@Override
 	public long update(User user) {
-		Map<String, ?> map = Collections.singletonMap("id", user);
-		return (long) jdbc.update(CategorySqls.DELETE, map);
+		SqlParameterSource params = new BeanPropertySqlParameterSource(user);
+		return (long) jdbc.update(UserSqls.UPDATE, params);
 	}
-
-	public User selectOneBySnsId(long snsId) {
-		Map<String, Long> params = Collections.singletonMap("snsId", snsId);
-		return jdbc.queryForObject(ProductSqls.SELECT_ONE, params, rowMapper);
+	@Override
+	public User selectOneBySnsId(String snsId) {
+		Map<String, String> params = Collections.singletonMap("snsId", snsId);
+		return jdbc.queryForObject(UserSqls.SELECT_ONE_BY_SNS_ID, params, rowMapper);
+	}
+	@Override
+	public Integer existByNaverId(String naverId) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("snsId", naverId);
+		return jdbc.queryForObject(UserSqls.EXISTS_BY_NAVER_ID, params, Integer.class);
 	}
 }

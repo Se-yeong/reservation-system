@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.reservation.dao.ProductDao;
 import kr.or.reservation.dao.sqls.ProductSqls;
 import kr.or.reservation.domain.DisplayInfo;
-import kr.or.reservation.domain.File;
+import kr.or.reservation.domain.FileDomain;
 import kr.or.reservation.domain.PriceType;
 import kr.or.reservation.domain.Product;
 import kr.or.reservation.domain.ProductDetail;
@@ -182,12 +182,12 @@ public class ProductDaoImpl implements ProductDao {
 		public List<ProductImage> mapImage(ResultSet rs) throws SQLException {
 			List<ProductImage> list = new ArrayList<ProductImage>();
 			ProductImage image = null;
-			File file = null;
+			FileDomain file = null;
 
 			try {
 				rs.beforeFirst();
 				while (rs.next()) {
-					file = new File();
+					file = new FileDomain();
 					file.setContentType(rs.getString("content_type"));
 					// file.setCreateDate(rs.getString(createDate));
 					file.setDeleteFlag(rs.getInt("delete_flag"));
