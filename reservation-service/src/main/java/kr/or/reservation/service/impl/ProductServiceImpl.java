@@ -18,13 +18,19 @@ public class ProductServiceImpl implements ProductService {
 	ProductDao dao;
 	
 	// STATIC을 안 써도 문제없음.
-	static Map<Long, Long> cachedCount = new HashMap<>();
+	private Map<Long, Long> cachedCount = new HashMap<>();
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Autowired
 	public void setDao(ProductDao dao) {
 		this.dao = dao;
 	}
+	
+	public void setCachedCount(Map<Long, Long> cachedCount) {
+		this.cachedCount = cachedCount;
+	}
+
+
 
 	@Override
 	public Product selectOne(long id) {
