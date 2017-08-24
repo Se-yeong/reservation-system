@@ -20,7 +20,7 @@
                     <a href="/" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
                     <a href="/" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
                 </h1>
-                <a href="#" class="btn_my"> <span title="내 예약">MY</span> </a>
+                <a href="/myreservation" class="btn_my"> <span title="내 예약">MY</span> </a>
             </header>
         </div>
         <div class="ct main">
@@ -141,7 +141,7 @@
                         </div>
                         <p class="guide"> <i class="spr_book2 ico_bell"></i> <span>네이버 예약을 통해 실제 방문한 이용자가 남긴 평가입니다.</span> </p>
                     </div>
-                    <a class="btn_review_more" href="#"> <span>예매자 한줄평 더보기</span> <i class="fn fn-forward1"></i> </a>
+                    <a class="btn_review_more" href="/product/${product.id}/review"> <span>예매자 한줄평 더보기</span> <i class="fn fn-forward1"></i> </a>
                 </div>
                 <div class="section_info_tab">
                     <!-- [D] tab 선택 시 anchor에 active 추가 -->
@@ -240,19 +240,7 @@
             <div>
                 <div class="container_visual" style="width: 414px;">
                     <ul class="visual_img">
-                    	<script type="text/handlebars" id="photoviewer-image-template">
-									{{#images}}
-                                    <li class="item" style="width: 414px;" data-id="{{id}}"> <img alt="{{fileName}}" class="img_thumb" src="{{saveFileName}}"> 
-                                    	<span class="img_bg"></span>
-                                        <div class="visual_txt">
-                                            <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span>${product.name}</span> </h2>
-                                                <p class="visual_txt_dsc"></p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    {{/images}}
-						</script>
+                    	
                     </ul>
                 </div>
                 <div class="prev">
@@ -273,6 +261,19 @@
             </div>
         </div>
     </div>
+  						<script type="text/handlebars" id="photoviewer-image-template">
+									{{#images}}
+                                    <li class="item" style="width: 414px;" data-id="{{id}}"> <img alt="{{fileName}}" class="img_thumb" src="{{saveFileName}}"> 
+                                    	<span class="img_bg"></span>
+                                        <div class="visual_txt">
+                                            <div class="visual_txt_inn">
+                                                <h2 class="visual_txt_tit"> <span>${product.name}</span> </h2>
+                                                <p class="visual_txt_dsc"></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {{/images}}
+						</script>
     
     <script>
     	function getProductByEl() {

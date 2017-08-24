@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import junit.framework.Assert;
 import kr.or.reservation.config.RootApplicationContextConfig;
-import kr.or.reservation.dao.ReservationInfoDao;
+import kr.or.reservation.dao.ReservationDao;
 import kr.or.reservation.domain.ReservationInfo;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -23,7 +23,7 @@ import static org.hamcrest.CoreMatchers.is;
 public class ReservationTest {
 	
 	@Autowired
-	ReservationInfoDao dao;
+	ReservationDao dao;
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Test

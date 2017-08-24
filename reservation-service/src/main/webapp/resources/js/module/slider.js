@@ -20,6 +20,7 @@ define(["jquery", "component"], function($, Component){
 		this.$root.find(".nxt_inn").on("click", this.goRight.bind(this));
 		this.$root.find(".prev_inn").on("click", this.goLeft.bind(this));
 		this.$root.find(".nxt_inn , .prev_inn").on("click", this.pause.bind(this));
+		this.move(0);
 		this.autoSlide();	
 		this.paginate();
 	}
@@ -38,10 +39,8 @@ define(["jquery", "component"], function($, Component){
 	
 	
 	Slider.prototype.goLeft = function(e) {
-		if(e instanceof Event){
-			e.preventDefault();
-		}
-		
+		e.preventDefault();
+
 		if(this.position <= 1){
 			if(!this.endFlag){
 				this.position = this.length +1;
@@ -54,9 +53,7 @@ define(["jquery", "component"], function($, Component){
 	}
 	
 	Slider.prototype.goRight = function(e) {
-		if(e instanceof Event){
-			e.preventDefault();
-		}
+		e.preventDefault();
 		
 		if ( !(this.position === this.length && this.endFlag) ) {
 			this.position++;

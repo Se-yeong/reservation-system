@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.or.reservation.common.FileIO;
 
 @RestController
-@RequestMapping("/download/file")
-public class FIleController {
+@RequestMapping
+public class FileController {
 
-	@GetMapping
+	@GetMapping("/download/file")
 	public void downloadFile(@RequestParam String fileName, HttpServletResponse response) {
         try{
         	FileIO.readFile(fileName, response.getOutputStream());

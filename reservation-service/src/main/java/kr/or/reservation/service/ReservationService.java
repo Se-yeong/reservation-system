@@ -4,6 +4,6 @@ import kr.or.reservation.domain.ReservationInfo;
 
 public interface ReservationService {
 	
-	Long insert(ReservationInfo reservationInfo);
-
+	public Long insert(ReservationInfo reservationInfo);
+	public ReservationInfo selectOne(long id);
 }

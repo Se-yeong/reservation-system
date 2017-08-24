@@ -29,7 +29,6 @@ define([ "jquery", "handlebars", "component", "extend2" ], function($,Handlebars
 	}
 
 	Visual.prototype.makeVisual = function(data) {
-		console.log(data);
 		this.length = data.length;
 		
 		var images = [];

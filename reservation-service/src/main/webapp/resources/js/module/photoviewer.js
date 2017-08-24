@@ -8,14 +8,17 @@ define(["jquery", "handlebars", "visual", "slider"], function($, Handlebars, Vis
 		ajaxUrl = url;
 		$root.css("display", "block");
 		initVisual().then(initSlider);
+		$(".photoviewer_closer").off("click");
 		$(".photoviewer_closer").on("click", closeClickHandler);
 	}
 	
 	function initVisual() {
+		
 		var setting  = {
 				$root  : $root,
 				handlebarsElement : $("#photoviewer-image-template").html()
 		};		
+		
 		visual = new Visual(setting);
 		return visual.getImagesByAjax(ajaxUrl);
 	}

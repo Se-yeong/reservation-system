@@ -5,18 +5,18 @@ import java.sql.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.or.reservation.dao.ReservationInfoDao;
+import kr.or.reservation.dao.ReservationDao;
 import kr.or.reservation.domain.ReservationInfo;
 import kr.or.reservation.service.ReservationService;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
-	ReservationInfoDao reservaioninfoDao;
+	ReservationDao reservaionDao;
 
 	@Autowired
-	public void setReservaioninfoDao(ReservationInfoDao reservaioninfoDao) {
-		this.reservaioninfoDao = reservaioninfoDao;
+	public void setReservaioninfoDao(ReservationDao reservaionDao) {
+		this.reservaionDao = reservaionDao;
 	}
 
 	@Override
@@ -27,7 +27,12 @@ public class ReservationServiceImpl implements ReservationService {
 		// default값으로 넣어둠. 
 		reservationInfo.setReservationDate(new Timestamp(System.currentTimeMillis()));
 		reservationInfo.setUserId(1);
-		return reservaioninfoDao.insert(reservationInfo);
+		return reservaionDao.insert(reservationInfo);
+	}
+	
+	@Override
+	public ReservationInfo selectOne(long id) {
+		return reservaionDao.selectOne(id);
 	}
 
 }

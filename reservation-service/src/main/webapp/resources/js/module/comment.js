@@ -2,6 +2,7 @@ define(["jquery", "handlebars", "visual", "photoviewer"], function($, Handlebars
 	var start = 0;
 	var source = $("#comment-template").html();
 	var template = Handlebars.compile(source);
+
 	
 	function getCommentList(productId, amount){
 		var url = "/api/comment?productId=" + productId + "&start=" + start + "&amount=" + amount ;
@@ -41,7 +42,6 @@ define(["jquery", "handlebars", "visual", "photoviewer"], function($, Handlebars
 		
 		var id = obj.closest(".list_item").data("id");		
 		var url = "/api/comment/" + id + "/image";
-		
 		Photoviewer.init(url);
 	}
 	

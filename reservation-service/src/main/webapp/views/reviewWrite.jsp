@@ -1,30 +1,24 @@
-<!DOCTYPE html>
-<html lang="ko">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
 
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="네이버 예약, 네이버 예약이 연동된 곳 어디서나 바로 예약하고, 네이버 예약 홈(나의예약)에서 모두 관리할 수 있습니다.">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
 	<title>네이버 예약</title>
-	<link href="../css/style.css" rel="stylesheet">
+	<link href="/resources/css/style.css" rel="stylesheet">
 </head>
 
 <body>
 	<div id="container">
-		<div class="header fade">
-			<header class="header_tit">
-				<h1 class="logo">
-					<a href="#" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
-					<a href="#" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
-				</h1>
-				<a href="#" class="btn_my"> <span title="내 예약">MY</span> </a>
-			</header>
-		</div>
+		
 		<div class="ct">
 			<div class="ct_wrap">
 				<div class="top_title review_header">
 					<a href="#" class="btn_back" title="이전 화면으로 이동"> <i class="fn fn-backward1"></i> </a>
-					<h2><span class="title">클림트 인사이드</span></h2>
+					<h2><span class="title">${reservation.reservationName}</span></h2>
 				</div>
 				<!-- 리뷰 별점 -->
 				<div class="write_act">
@@ -85,41 +79,15 @@
 					<div class="review_photos review_photos_write">
 						<div class="item_preview_thumbs">
 							<ul class="lst_thumb">
-								<li class="item">
-									<a href="#" class="anchor">
-										<span class="spr_book ico_del">삭제</span>
-									</a>
-									<img src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" width="130" alt="" class="item_thumb">
-									<span class="img_border"></span>
-								</li>
-								<li class="item">
-									<a href="#" class="anchor">
-										<span class="spr_book ico_del">삭제</span>
-									</a>
-									<img src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" width="130" alt="" class="item_thumb">
-									<span class="img_border"></span>
-								</li>
-								<li class="item">
-									<a href="#" class="anchor">
-										<span class="spr_book ico_del">삭제</span>
-									</a>
-									<img src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" width="130" alt="" class="item_thumb">
-									<span class="img_border"></span>
-								</li>
-								<li class="item">
-									<a href="#" class="anchor">
-										<span class="spr_book ico_del">삭제</span>
-									</a>
-									<img src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" width="130" alt="" class="item_thumb">
-									<span class="img_border"></span>
-								</li>
-								<li class="item">
-									<a href="#" class="anchor">
-										<span class="spr_book ico_del">삭제</span>
-									</a>
-									<img src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" width="130" alt="" class="item_thumb">
-									<span class="img_border"></span>
-								</li>
+								<script id="review_photos_template" type="text/x-handlebars-template">
+									<li class="item" data-index="{{index}}">
+										<a href="#" class="anchor">
+											<span class="spr_book ico_del">삭제</span>
+										</a>
+										<img src="{{imgSrc}}" width="130" alt="{{imgAlt}}" class="item_thumb">
+										<span class="img_border"></span>
+									</li>
+								</script>
 							</ul>
 						</div>
 					</div>
@@ -145,6 +113,18 @@
 			<span class="copyright">© NAVER Corp.</span>
 		</div>
 	</footer>
+	
+	
+	<script>
+		function getReservationInfo() {
+			var reservationInfo = {
+					productId : "${reservationInfo.productId}",
+					userId : "${reservationInfo.userId}"
+				};
+			return reservationInfo;
+		}
+	</script>
+	<script data-main="/resources/js/reviewWrite/reviewWrite" src="/resources/node_modules/requirejs/require.js"></script>
 </body>
 
 </html>

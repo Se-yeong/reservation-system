@@ -11,4 +11,6 @@ public class ReservationController {
 	public String viewMyReservation(Model model) {
 		return "myreservation";
 	}
+	
+	
 }
