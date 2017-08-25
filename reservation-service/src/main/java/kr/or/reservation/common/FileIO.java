@@ -56,7 +56,7 @@ public class FileIO {
 		FileDomain[] fileArray = new FileDomain[fileLength];
 
 		if (files != null && fileLength > 0) {
-			String formattedDate = new SimpleDateFormat("yyyy" + File.separator + "MM" + File.separator + "dd").format(new Date());
+			String formattedDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
 			File f = new File(FILE_BASE_DIR + formattedDate);
 		
 			if (!f.exists()) {
@@ -68,7 +68,7 @@ public class FileIO {
 				long size = files[i].getSize();
 
 				String uuid = UUID.randomUUID().toString();
-				String saveFileName = formattedDate + File.separator + uuid + ".jpg";
+				String saveFileName = formattedDate + "/" + uuid + ".jpg";
 				
 				try (InputStream in = files[i].getInputStream();
 						FileOutputStream fos = new FileOutputStream(FILE_BASE_DIR + saveFileName)) {

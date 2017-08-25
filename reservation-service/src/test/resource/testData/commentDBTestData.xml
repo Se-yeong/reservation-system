@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dataset SYSTEM "dataset.dtd">
+<dataset>
+	
+    <table name="reservation_user_comment">
+		<column>id</column>
+		<column>product_id</column>
+		<column>user_id</column>
+		<column>score</column>
+		<column>comment</column>
+		<column>create_date</column>
+		<column>modify_date</column>
+		<column>image_count</column>
+		<column>first_image_save_file_name</column>
+
+        <row>
+			<value>11</value>
+			<value>1</value>
+			<value>2</value>
+			<value>4.9</value>
+			<value>코멘트 1-1</value>
+			<value>1483282240000</value>
+			<value>1484059840000</value>
+			<value>/api/file?fileName=comment%2F1.png</value>
+			<value>3</value>
+        </row>
+		<row>
+			<value>12</value>
+			<value>1</value>
+			<value>3</value>
+			<value>3.9</value>
+			<value>코멘트 1-2</value>
+			<value>1483282240000</value>
+			<value>1484059840000</value>
+			<value>/api/file?fileName=comment%2F2.png</value>
+			<value>2</value>
+		</row>
+		<row>
+			<value>13</value>
+			<value>1</value>
+			<value>4</value>
+			<value>2.9</value>
+			<value>코멘트 1-3</value>
+			<value>1483282240000</value>
+			<value>1484059840000</value>
+			<value></value>
+			<value></value>
+		</row>
+	</table>
+</dataset>

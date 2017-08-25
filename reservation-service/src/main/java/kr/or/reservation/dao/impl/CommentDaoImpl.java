@@ -1,8 +1,5 @@
 package kr.or.reservation.dao.impl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +7,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -20,10 +18,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.reservation.dao.CommentDao;
 import kr.or.reservation.dao.sqls.CommentSqls;
-import kr.or.reservation.domain.FileDomain;
-import kr.or.reservation.domain.ProductImage;
 import kr.or.reservation.domain.ReservationUserComment;
-import kr.or.reservation.domain.ReservationUserCommentImage;
 
 @Repository
 public class CommentDaoImpl implements CommentDao {
@@ -34,11 +29,18 @@ public class CommentDaoImpl implements CommentDao {
 	private RowMapper<ReservationUserComment> rowMapper = BeanPropertyRowMapper
 			.newInstance(ReservationUserComment.class);
 	
-
+	public CommentDaoImpl() {
+	}
+	
+	@Autowired
 	public CommentDaoImpl(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 		this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("reservation_user_comment")
 				.usingGeneratedKeyColumns("id");
+	}
+	
+	public void setJdbc(NamedParameterJdbcTemplate jdbc) {
+		this.jdbc = jdbc;
 	}
 
 	@Override
