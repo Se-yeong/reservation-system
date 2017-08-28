@@ -1,4 +1,4 @@
-package kr.or.reservation.dao.impl;
+/*package kr.or.reservation.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -55,7 +55,7 @@ public class ProductDaoTest {
 
 
 
-	/*
+	
 	 * public void setMocks() throws SQLException {
 	 * 
 	 * when(mockDataSource.getConnection()).thenReturn(mockConnection);
@@ -86,7 +86,7 @@ public class ProductDaoTest {
 	 * 
 	 * when(mockResultSet.getInt("price_type")).thenReturn(1);
 	 * when(mockResultSet.getLong("price")).thenReturn((long) 1000); }
-	 */
+	 
 
 	// dao Test 관련해서 질문할 것.
 	@Test
@@ -126,3 +126,4 @@ public class ProductDaoTest {
 	}
 
 }
+*/

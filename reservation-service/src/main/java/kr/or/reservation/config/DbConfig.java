@@ -6,9 +6,6 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.dbunit.DatabaseUnitException;
-import org.dbunit.database.DatabaseConnection;
-import org.dbunit.database.IDatabaseConnection;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,10 +45,4 @@ public class DbConfig {
 		return new DataSourceTransactionManager(dataSource());
 	}
 	
-	@Bean
-	public IDatabaseConnection getConnection()
-			throws ClassNotFoundException, SQLException, DatabaseUnitException {
-		Class.forName(driverClassName);
-		return new DatabaseConnection(DriverManager.getConnection(url, username,password));
-	}
 }
