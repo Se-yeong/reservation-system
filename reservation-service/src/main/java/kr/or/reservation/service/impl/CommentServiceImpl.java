@@ -21,13 +21,20 @@ public class CommentServiceImpl implements CommentService {
 	public void setCommentDao(CommentDao dao) {
 		this.dao = dao;
 	}
+
+	@Autowired
+	public void setImagedao(CommentImageDao imagedao) {
+		this.imagedao = imagedao;
+	}
+
 	@Override
 	public long insert(ReservationUserComment comment) {
-		if(comment == null || comment.getComment() == null) {
+		if (comment == null || comment.getComment() == null) {
 			throw new IllegalArgumentException();
 		}
 		return dao.insert(comment);
 	}
+
 	@Override
 	public List<ReservationUserComment> selectList(long productId, int start, int amount) {
 		if (start < 0 || amount <= 0 || productId <= 0) {
@@ -35,6 +42,7 @@ public class CommentServiceImpl implements CommentService {
 		}
 		return dao.selectList(productId, start, amount);
 	}
+
 	@Override
 	public List<ReservationUserCommentImage> selectImageList(long id) {
 		if (id <= 0) {
@@ -42,7 +50,7 @@ public class CommentServiceImpl implements CommentService {
 		}
 		return imagedao.selectList(id);
 	}
-	
+
 	@Override
 	public boolean updatefirstFileName(long commentId, FileDomain file, long imageCount) {
 		if (commentId <= 0 || imageCount <= 0) {

@@ -15,6 +15,7 @@ public class UserServiceImpl implements UserService {
 	public void setUserDao(UserDao userDao) {
 		this.dao = userDao;
 	}
+	
 	@Override
 	public long insert(User user) {
 		return dao.insert(user);
