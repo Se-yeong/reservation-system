@@ -3,6 +3,7 @@ package kr.or.reservation.dao.impl;
 import java.io.FileInputStream;
 import java.util.List;
 
+import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
@@ -28,24 +29,25 @@ import kr.or.reservation.domain.ReservationUserComment;
 public class CommentDBTest extends TestCase {
 	
 	CommentDao dao;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.h2.Driver");
-		dataSource.setUrl("jdbc:h2:~/reservationSystem/CommentDBTest;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=TRUE;");
+		dataSource.setUrl("jdbc:h2:~/reservationSystem/CommentDBTest;"
+				+ "AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE;");
 		dataSource.setUsername("sa");
 		dataSource.setPassword("sa");
+	
+		IDatabaseConnection connection = new DatabaseDataSourceConnection(dataSource);
+		connection.getConfig().setProperty(DatabaseConfig.FEATURE_ALLOW_EMPTY_FIELDS, true);		
+		IDataSet dataSet = new XmlDataSet(
+				new FileInputStream("src/test/resource/testData/commentDBTestData.xml"));
 		
 		this.dao = new CommentDaoImpl(dataSource);
-		
-		IDatabaseConnection connection = new DatabaseDataSourceConnection(dataSource);
-		
-		IDataSet dataSet = this.getDataSet();
-		
-        DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
+		DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
 	}
 	
 	@Test
@@ -56,13 +58,6 @@ public class CommentDBTest extends TestCase {
 		assertNotNull(list);
 		
 	}
-	 
 
-
-
-	protected IDataSet getDataSet() throws Exception
-    {	
-        return new XmlDataSet(new FileInputStream("src/test/resource/testData/commentDBTestData.xml"));
-    }
 	
 }

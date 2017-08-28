@@ -47,11 +47,4 @@ public class DbConfig {
 	public PlatformTransactionManager transactionManger() {
 		return new DataSourceTransactionManager(dataSource());
 	}
-	
-	@Bean
-	public IDatabaseConnection getConnection()
-			throws ClassNotFoundException, SQLException, DatabaseUnitException {
-		Class.forName(driverClassName);
-		return new DatabaseConnection(DriverManager.getConnection(url, username,password));
-	}
 }
