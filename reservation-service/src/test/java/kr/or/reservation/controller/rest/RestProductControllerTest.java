@@ -2,6 +2,7 @@ package kr.or.reservation.controller.rest;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.*;
 
@@ -76,6 +77,7 @@ public class RestProductControllerTest {
 				.andExpect(content().contentType("application/json;charset=UTF-8")).andExpect(jsonPath("$", hasSize(1)))
 				.andExpect(jsonPath("$[0].id").value((int) productId));
 		verify(service, times(1)).selectList(start, amount);
+	
 	}
 
 	@Test

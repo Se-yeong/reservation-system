@@ -14,7 +14,7 @@ import kr.or.reservation.domain.Category;
 import kr.or.reservation.service.impl.CategoryServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CategoryTest {
+public class CategoryServiceTest {
 
 	/*
 	 * @Autowired CategoryService categoryService;
