@@ -1,4 +1,4 @@
-package intercepter;
+package kr.or.reservation.intercepter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
